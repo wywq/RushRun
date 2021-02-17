@@ -1,0 +1,34 @@
+@import "_theme";
+@import "_variable";
+
+//弹性盒模型
+@mixin flex($justify, $align) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+//多行长文本截断
+@mixin text_cut_much($lines) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+}
+
+//两端对齐
+@mixin text_justify_line($width, $height) {
+  display: inline-block;
+  text-align: justify;
+  overflow: hidden;
+  width: $width;
+  height: $height;
+  line-height: $height;
+  i {
+    display: inline-block;
+    width: 100%;
+    height: 0;
+  }
+}
+

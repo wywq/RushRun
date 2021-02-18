@@ -1,9 +1,45 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// 用户协议
 		{
-			"path": "pages/index/index",
+			"path": "pages/basic/agreement/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationStyle": "custom"
+			}
+		},
+		// 首页
+		{
+			"path": "pages/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 任务
+		{
+			"path": "pages/task/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 消息
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 商圈
+		{
+			"path": "pages/business/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 我的
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationStyle": "custom"
 			}
 		}
 	],
@@ -15,33 +51,39 @@
 		"onReachBottomDistance": 160
 	},
 	"tabBar": {
-		"color": "#9B9B9B",
-		"selectedColor": "#d5b07b",
+		"color": "#999999",
+		"selectedColor": "#E6344A",
 		"borderStyle": "white",
 		"backgroundColor": "#FFFFFF",
 		"list": [
 			{
-				"pagePath": "pages/Home/Index/index",
-				"iconPath": "static/image/shouye_icon@2x.png",
-				"selectedIconPath": "static/image/shouye_icon_sel@2x.png",
+				"pagePath": "pages/index",
+				"iconPath": "static/image/sy_wd_h_icon@2x.png",
+				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/Infomation/index",
-				"iconPath": "static/image/zixun_icon@2x.png",
-				"selectedIconPath": "static/image/zixun_icon_sel@2x.png",
-				"text": "资讯"
+				"pagePath": "pages/task/index",
+				"iconPath": "static/image/sy_wd_h_icon@2x.png",
+				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
+				"text": "任务"
 			},
 			{
-				"pagePath": "pages/Wallet/Index/index",
-				"iconPath": "static/image/zichan_icon@2x.png",
-				"selectedIconPath": "static/image/zichan_icon_sel@2x.png",
-				"text": "资产"
+				"pagePath": "pages/message/index",
+				"iconPath": "static/image/sy_wd_h_icon@2x.png",
+				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
+				"text": "消息"
 			},
 			{
-				"pagePath": "pages/Mine/Index/index",
-				"iconPath": "static/image/wode_icon@2x.png",
-				"selectedIconPath": "static/image/wode_icon_sel@2x.png",
+				"pagePath": "pages/business/index",
+				"iconPath": "static/image/sy_wd_h_icon@2x.png",
+				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
+				"text": "商圈"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"iconPath": "static/image/sy_wd_h_icon@2x.png",
+				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
 				"text": "我的"
 			}
 		]

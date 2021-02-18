@@ -1,4 +1,3 @@
-import Store from "@/store/index";
 // 全局本地存储方法
 const storage = {
   set(key, value) {
@@ -39,19 +38,7 @@ function countDown(time, doop) {
   }, 1000);
 }
 //退出登录
-function LogOut() {
-  Store.dispatch("changeIdentity", 0);
-  storage.remove("me_id");
-  storage.remove("token");
-  storage.remove("me_phone");
-  storage.remove("me_invite_code");
-  storage.remove("mineData");
-  storage.remove("neData");
-  storage.remove("areaData");
-  uni.reLaunch({
-    url: "/pages/Basic/Login/index",
-  });
-}
+function LogOut() {}
 //时间戳转星期
 function tsToWeek(timestamp) {
   let date = new Date(timestamp * 1000);

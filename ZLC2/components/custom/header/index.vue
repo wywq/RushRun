@@ -1,0 +1,108 @@
+<!-- 自定义头 -->
+<template>
+  <view class="header">
+    <!-- 背景图 -->
+    <image class="header-bg" src="@/static/image/headerbg.png" />
+    <!-- 状态栏 -->
+    <view class="header-bar"></view>
+    <!-- 头 -->
+    <view class="header-body">
+      <image
+        class="header-body-icon"
+        src="@/static/image/dl_fh_b_icon@2x.png"
+        @tap="handleBack"
+      />
+      <view class="header-body-title">{{ title }}</view>
+      <view class="header-body-func" @tap="handleSubtitle">{{ subtitle }}</view>
+    </view>
+  </view>
+</template>
+
+<script>
+export default {
+  props: {
+    title: String,
+    subtitle: String,
+  },
+  data() {
+    return {};
+  },
+  mounted() {},
+  methods: {
+    //  后退
+    handleBack() {
+      uni.navigateBack({
+        delta: 1,
+      });
+    },
+    //  功能按钮
+    handleSubtitle() {
+      this.$emit("onRightButtonClick");
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+/*  #ifdef  APP-PLUS */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: calc(96rpx + var(--status-bar-height));
+  z-index: 9999;
+}
+/*  #endif  */
+/*  #ifdef  H5 */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 121rpx;
+  z-index: 9999;
+}
+/*  #endif  */
+.header-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/*  #ifdef  APP-PLUS */
+.header-bar {
+  width: 100%;
+  height: var(--status-bar-height);
+}
+/*  #endif  */
+/*  #ifdef  H5 */
+.header-bar {
+  width: 100%;
+  height: 25rpx;
+}
+/*  #endif  */
+.header-body {
+  @include flex(space-between, center);
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  width: 100%;
+  height: 96rpx;
+}
+.header-body-icon {
+  width: 22rpx;
+  height: 42rpx;
+}
+.header-body-title {
+  font-size: 36rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+}
+.header-body-func {
+  font-size: 28rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
+}
+</style>

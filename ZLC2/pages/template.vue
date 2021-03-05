@@ -2,8 +2,8 @@
 <template>
   <view class="agreement">
     <header-basic
+      :icon="true"
       title="用户协议"
-      subtitle="dianji"
       @onRightButtonClick="onHandleRight"
     ></header-basic>
     <!-- 主体 -->
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import HeaderBasic from "@/components/custom/header/index";
+import HeaderBasic from "@/components/header/index";
 export default {
   components: {
     HeaderBasic,

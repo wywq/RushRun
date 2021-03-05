@@ -107,12 +107,11 @@ view {
 }
 //输入框placeholder的样式类
 .input-placeholder {
-  height: 42rpx;
-  font-size: 30rpx;
+  font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: $uni-text-color-placeholder;
-  line-height: 42rpx;
+  color: #9b9b9b;
+  line-height: 40rpx;
 }
 //灰色滤镜
 .gray {

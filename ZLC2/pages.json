@@ -1,12 +1,5 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-		// 用户协议
-		{
-			"path": "pages/basic/agreement/index",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
 		// 首页
 		{
 			"path": "pages/index",
@@ -14,23 +7,67 @@
 				"navigationStyle": "custom"
 			}
 		},
-		// 任务
+		// 用户协议
 		{
-			"path": "pages/task/index",
+			"path": "pages/basic/agreement/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
 		},
-		// 消息
+		// 富文本
 		{
-			"path": "pages/message/index",
+			"path": "pages/basic/richtext/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
 		},
-		// 商圈
+		//公告列表
 		{
-			"path": "pages/business/index",
+			"path": "pages/home/noticeList/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//会员等级
+		{
+			"path": "pages/home/memberLevel/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//统计(贡献值/活跃度)
+		{
+			"path": "pages/home/homeCensus/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 发现
+		{
+			"path": "pages/found/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//视频详情
+		{
+			"path": "pages/found/videoDetails/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//音频详情
+		{
+			"path": "pages/found/audioDetails/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 会员中心
+		{
+			"path": "pages/member/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -38,6 +75,34 @@
 		// 我的
 		{
 			"path": "pages/mine/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 个人信息
+		{
+			"path": "pages/mine/message/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 性别
+		{
+			"path": "pages/mine/sex/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 实名
+		{
+			"path": "pages/mine/realname/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 等级信息
+		{
+			"path": "pages/mine/level/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -58,32 +123,26 @@
 		"list": [
 			{
 				"pagePath": "pages/index",
-				"iconPath": "static/image/sy_wd_h_icon@2x.png",
-				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
+				"iconPath": "static/image/nav_sy_icon@2x.png",
+				"selectedIconPath": "static/image/nav_sy1_icon@2x.png",
 				"text": "首页"
 			},
 			{
-				"pagePath": "pages/task/index",
-				"iconPath": "static/image/sy_wd_h_icon@2x.png",
-				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
-				"text": "任务"
+				"pagePath": "pages/found/index",
+				"iconPath": "static/image/nav_fx_icon@2x.png",
+				"selectedIconPath": "static/image/nav_fx1_icon@2x.png",
+				"text": "发现"
 			},
 			{
-				"pagePath": "pages/message/index",
-				"iconPath": "static/image/sy_wd_h_icon@2x.png",
-				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
-				"text": "消息"
-			},
-			{
-				"pagePath": "pages/business/index",
-				"iconPath": "static/image/sy_wd_h_icon@2x.png",
-				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
-				"text": "商圈"
+				"pagePath": "pages/member/index",
+				"iconPath": "static/image/nav_hy_icon@2x.png",
+				"selectedIconPath": "static/image/nav_hy1_icon@2x.png",
+				"text": "会员中心"
 			},
 			{
 				"pagePath": "pages/mine/index",
-				"iconPath": "static/image/sy_wd_h_icon@2x.png",
-				"selectedIconPath": "static/image/sy_wd_h_icon@2x(1).png",
+				"iconPath": "static/image/nav_wd_icon@2x.png",
+				"selectedIconPath": "static/image/nav_wd1_icon@2x.png",
 				"text": "我的"
 			}
 		]

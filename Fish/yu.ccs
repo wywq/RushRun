@@ -1,0 +1,19 @@
+<Solution>
+  <PropertyGroup Name="yu" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Image Name="1.png" />
+        <Image Name="2.png" />
+        <Image Name="3.png" />
+        <Image Name="4.png" />
+        <Image Name="5.png" />
+        <Image Name="6.png" />
+        <Image Name="7.png" />
+        <Image Name="8.png" />
+        <Project Name="MainScene.csd" Type="Scene" />
+        <Project Name="yu.csd" Type="Node" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

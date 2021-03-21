@@ -6,40 +6,57 @@
     <view class="sex-body">
       <view class="sex-column">
         <block v-for="s in sexList" :key="s.id">
-          <view class="sex-item">
-            <view class="sex-item-title" :class="s.check ? 'active' : ''">{{
+          <view class="sex-item" @tap="handleChangeSex(s.id)">
+            <view class="sex-item-title" :class="s.id == sex ? 'active' : ''">{{
               s.title
             }}</view>
-            <template v-if="s.check">
+            <template v-if="s.id == sex">
               <image
                 class="sex-item-img"
-                src="@/static/image/wd_lxkefu_icon@2x.png"
+                src="@/static/image/xb_xuanze_icon@2x.png"
               ></image>
             </template>
           </view>
         </block>
       </view>
-      <view class="sex-confirm">确定</view>
+      <view class="sex-confirm" @tap="handleConfirm">确定</view>
     </view>
   </view>
 </template>
 
 <script>
 import HeaderBasic from "@/components/header/index";
+import Utils from "@/common/utils/index.js";
+
 export default {
   components: {
     HeaderBasic,
   },
   data() {
     return {
+      sex: 999,
       sexList: [
-        { id: 1, title: "男", check: true },
-        { id: 2, title: "女", check: false },
+        { id: 1, title: "男" },
+        { id: 0, title: "女" },
       ],
     };
   },
-  onLoad(options) {},
-  methods: {},
+  onLoad(options) {
+    if (options.sex) {
+      this.sex = options.sex;
+    }
+  },
+  methods: {
+    handleChangeSex(id) {
+      this.sex = id;
+    },
+    handleConfirm() {
+      Utils.storage.set("zlc_sex", this.sex);
+      uni.navigateBack({
+        delta: 1,
+      });
+    },
+  },
 };
 </script>
 

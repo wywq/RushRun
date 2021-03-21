@@ -10,7 +10,7 @@
     <template v-if="isPlay">
       <video
         class="video-player"
-        src="@/static/video/demo.mp4"
+        :src="videoDetail.shipin_code"
         autoplay
         :show-play-btn="false"
         @ended="onEnd"
@@ -19,7 +19,7 @@
     <!-- 主体 -->
     <template v-else>
       <view class="video-body-cover">
-        <image class="video-cover" src="@/static/image/sy_yj_bg@2x.png"></image>
+        <image class="video-cover" :src="videoDetail.shipin_pic"></image>
         <image
           class="video-play"
           src="@/static/image/sxy_bf_icon@2x.png"
@@ -27,13 +27,15 @@
         ></image>
       </view>
     </template>
-    <share ref="share"></share>
+    <share ref="share" :details="details"></share>
   </view>
 </template>
 
 <script>
 import HeaderBasic from "@/components/header/index";
 import share from "@/components/popup/share/index.vue";
+import { shangDetail } from "@/api/new.js";
+
 export default {
   components: {
     HeaderBasic,
@@ -42,9 +44,41 @@ export default {
   data() {
     return {
       isPlay: false,
+      //视频详情
+      videoDetail: {},
     };
   },
+  computed: {
+    details() {
+      return JSON.stringify(this.videoDetail);
+    },
+  },
+  onLoad(opt) {
+    if (opt.id) {
+      this.getShangDetail(opt.id);
+    }
+  },
   methods: {
+    //商学院详情
+    getShangDetail(shipin_id) {
+      shangDetail(
+        {
+          shipin_id,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("商学院详情", res.data);
+            this.videoDetail = res.data;
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
     //分享
     onHandleRight() {
       console.log("nb2");

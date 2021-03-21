@@ -9,9 +9,9 @@
     <!-- 主体 -->
     <view class="notice-body">
       <block v-for="n in noticeList" :key="n.id">
-        <view class="notice-body-item" @tap="handleDetails">
+        <view class="notice-body-item" @tap="handleDetails(n.id)">
           <view class="notice-body-item-title">{{ n.title }}</view>
-          <view class="notice-body-item-time">{{ n.time }}</view>
+          <view class="notice-body-item-time">{{ n.add_time }}</view>
         </view>
       </block>
     </view>
@@ -20,6 +20,7 @@
 
 <script>
 import HeaderBasic from "@/components/header/index";
+import { newslist } from "@/api/new.js";
 export default {
   components: {
     HeaderBasic,
@@ -27,25 +28,41 @@ export default {
   data() {
     return {
       //公告列表
-      noticeList: [
-        { id: 1, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 2, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 3, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 4, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 5, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 6, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 7, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 8, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 9, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 10, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-      ],
+      noticeList: [],
     };
   },
-  onLoad(options) {},
+  onLoad() {
+    this.getNewslist();
+  },
   methods: {
-    handleDetails() {
+    //   公告列表
+    getNewslist() {
+      newslist(
+        {
+          page: 1,
+          page_num: 15,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log(res.data);
+            if (this.page == 1) {
+              this.noticeList = res.data;
+            } else {
+              this.noticeList = this.noticeList.concat(res.data);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+        }
+      );
+    },
+    handleDetails(id) {
+      // type 1 公告详情
       uni.navigateTo({
-        url: "/pages/basic/richtext/index",
+        url: "/pages/basic/richtext/index?type=1&id=" + id,
       });
     },
   },
@@ -97,7 +114,7 @@ export default {
   box-sizing: border-box;
   width: 100%;
   height: 100rpx;
-  border: 2rpx solid #eee;
+  border-bottom: 2rpx solid #eee;
   background: #fff;
 }
 .notice-body-item:last-child {

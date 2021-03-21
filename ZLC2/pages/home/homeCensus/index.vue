@@ -1,26 +1,30 @@
 <!-- 用户协议 -->
 <template>
   <view class="census">
-    <header-basic
-      class="census-header"
-      :icon="true"
-      :title="title"
-    ></header-basic>
-    <!-- 统计 -->
-    <view class="census-body">
-      <image class="census-body-icon" :src="censusImage"></image>
-      <view class="census-body-title">当前{{ title }}:</view>
-      <view class="census-body-value">10+10.21</view>
+    <view class="census-top">
+      <header-basic
+        class="census-header"
+        :icon="true"
+        :title="title"
+      ></header-basic>
+      <!-- 统计 -->
+      <view class="census-body">
+        <image class="census-body-icon" :src="censusImage"></image>
+        <view class="census-body-title">当前{{ title }}:</view>
+        <view class="census-body-value">{{ active }}</view>
+      </view>
     </view>
     <!-- 列表 -->
     <view class="census-list">
-      <block v-for="d in dataList" :key="d.id">
+      <block v-for="(d, i) in dataList" :key="i">
         <view class="census-item">
           <view class="census-item-left">
-            <view class="census-item-left-title">{{ d.title }}</view>
-            <view class="census-item-left-time">{{ d.time }}</view>
+            <view class="census-item-left-title">{{ d.content }}</view>
+            <view class="census-item-left-time">{{ d.add_time }}</view>
           </view>
-          <view class="census-item-right">{{ d.change }}</view>
+          <view class="census-item-right"
+            >{{ d.money_type | typeFilter }}{{ d.money }}</view
+          >
         </view>
       </block>
     </view>
@@ -29,6 +33,7 @@
 
 <script>
 import HeaderBasic from "@/components/header/index";
+import { gongxian, huoyuedu } from "@/api/new.js";
 export default {
   components: {
     HeaderBasic,
@@ -37,34 +42,22 @@ export default {
     return {
       //type 1 贡献值 2 活跃度
       type: 0,
+      //贡献值,活跃度
+      active: "",
       //liebiao1
-      dataList: [
-        {
-          id: 1,
-          title: "俱乐部成员购买卷轴",
-          time: "2019-01-22 12:01",
-          change: "+0.02",
-        },
-        {
-          id: 2,
-          title: "俱乐部成员购买卷轴",
-          time: "2019-01-22 12:01",
-          change: "+0.02",
-        },
-        {
-          id: 3,
-          title: "俱乐部成员购买卷轴",
-          time: "2019-01-22 12:01",
-          change: "+0.02",
-        },
-        {
-          id: 4,
-          title: "俱乐部成员购买卷轴",
-          time: "2019-01-22 12:01",
-          change: "+0.02",
-        },
-      ],
+      dataList: [],
+      page: 1,
     };
+  },
+  filters: {
+    typeFilter(val) {
+      switch (Number(val)) {
+        case 1:
+          return "+";
+        case 2:
+          return "-";
+      }
+    },
   },
   computed: {
     //标题
@@ -88,9 +81,84 @@ export default {
   onLoad(options) {
     if (options.type) {
       this.type = options.type;
+      uni.startPullDownRefresh();
     }
   },
-  methods: {},
+  onPullDownRefresh() {
+    console.log("pull");
+    this.page = 1;
+    switch (Number(this.type)) {
+      case 1:
+        this.getGongxian();
+        break;
+      case 2:
+        this.getHuoyuedu();
+        break;
+    }
+  },
+  onReachBottom() {
+    this.page++;
+    switch (Number(this.type)) {
+      case 1:
+        this.getGongxian();
+        break;
+      case 2:
+        this.getHuoyuedu();
+        break;
+    }
+  },
+  methods: {
+    //   贡献值
+    getGongxian() {
+      gongxian(
+        {
+          page: this.page,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("贡献值", res.gongxiandu);
+            this.active = res.gongxiandu.gongxian;
+            if (this.page == 1) {
+              this.dataList = res.neirong;
+            } else {
+              this.dataList = this.dataList.concat(res.neirong);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+    //   活跃度
+    getHuoyuedu() {
+      huoyuedu(
+        {
+          page: this.page,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("活跃度", res);
+            this.active = res.huoyue.jichu + "+" + res.huoyue.huoyue;
+            if (this.page == 1) {
+              this.dataList = res.neirong;
+            } else {
+              this.dataList = this.dataList.concat(res.neirong);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+  },
 };
 </script>
 
@@ -106,15 +174,6 @@ export default {
   min-height: 100vh;
   background: #fafafa;
 }
-.census-body {
-  @include flex(center, center);
-  position: fixed;
-  top: calc(100rpx + var(--status-bar-height));
-  z-index: 999;
-  width: 100%;
-  height: 124rpx;
-  background: #fff;
-}
 /*  #endif  */
 /*  #ifdef  H5 */
 .census {
@@ -127,20 +186,24 @@ export default {
   min-height: 100vh;
   background: #fafafa;
 }
+
+/*  #endif  */
+.census-top {
+  @include flex(flex-start, center);
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+}
 .census-body {
   @include flex(center, center);
-  position: fixed;
-  top: 125rpx;
-  z-index: 999;
   width: 100%;
   height: 124rpx;
   background: #fff;
 }
-/*  #endif  */
 .census-header {
-  position: fixed;
-  top: 0;
-  z-index: 999;
+  width: 100%;
 }
 .census-body-icon {
   margin-right: 6rpx;

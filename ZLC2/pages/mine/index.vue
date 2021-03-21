@@ -19,38 +19,32 @@
           src="@/static/image/wd_shezhi_icon@2x.png"
         ></image>
         <view class="mine-card-up" @tap="handleJump(1)">
-          <image
-            class="mine-card-avatar"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
-          ></image>
+          <image class="mine-card-avatar" :src="mineData.pic"></image>
           <view class="mine-card-message">
             <view class="mine-card-message-up">
-              <view class="mine-card-message-name">奋斗的小仓鼠</view>
-              <image
-                class="mine-card-message-icon"
-                src="@/static/image/vip2@2x.png"
-              ></image>
+              <view class="mine-card-message-name">{{ mineData.nick }}</view>
+              <image class="mine-card-message-icon" :src="levelIcon"></image>
             </view>
-            <view class="mine-card-message-down">ID：12589261233</view>
+            <view class="mine-card-message-down">ID：{{ mineData.phone }}</view>
           </view>
           <image
             class="mine-card-icon"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/wd_jin_icon@2x.png"
           ></image>
         </view>
         <view class="mine-card-down">
           <view class="mine-card-item">
-            <view class="mine-card-item-value">Lv3</view>
+            <view class="mine-card-item-value">{{ mineData.level }}</view>
             <view class="mine-card-item-title">会员等级</view>
           </view>
           <view class="mine-card-item-line"></view>
           <view class="mine-card-item">
-            <view class="mine-card-item-value">10+0.35</view>
+            <view class="mine-card-item-value">{{ mineData.huoyue }}</view>
             <view class="mine-card-item-title">活跃度</view>
           </view>
           <view class="mine-card-item-line"></view>
           <view class="mine-card-item">
-            <view class="mine-card-item-value">500</view>
+            <view class="mine-card-item-value">{{ mineData.gongxian }}</view>
             <view class="mine-card-item-title">贡献值</view>
           </view>
         </view>
@@ -60,11 +54,11 @@
     <view class="mine-body">
       <!-- 订单 -->
       <view class="mine-order">
-        <view class="mine-order-up">
+        <view class="mine-order-up" @tap="handleJump(8)">
           <view class="mine-order-up-title">全部订单</view>
           <image
             class="mine-order-up-icon"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <view class="mine-order-down">
@@ -79,7 +73,7 @@
       <!-- 功能 -->
       <view class="mine-column">
         <!-- 办理VIP -->
-        <view class="mine-column-item">
+        <!-- <view class="mine-column-item">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_blhy_icon@2x.png"
@@ -87,9 +81,9 @@
           <view class="mine-column-item-title">办理VIP</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
-        </view>
+        </view> -->
         <!-- 钱包地址 -->
         <view class="mine-column-item">
           <image
@@ -97,16 +91,17 @@
             src="@/static/image/wd_qbdz_icon@2x.png"
           ></image>
           <view class="mine-column-item-title">钱包地址</view>
-          <view class="mine-column-item-value"
-            >b145wko7kslpfg6stkslpfg6skslpfg6skslpfg6skslpfg6skslpfg6s5r4</view
-          >
+          <view class="mine-column-item-value">{{
+            mineData.jinbi_address
+          }}</view>
           <image
             class="mine-column-item-clip"
             src="@/static/image/wd_fuzhi_icon@2x.png"
+            @tap="handleClip"
           ></image>
         </view>
         <!-- 总钱包 -->
-        <view class="mine-column-item">
+        <view class="mine-column-item" @tap="handleJump(2)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_zqb_icon@2x.png"
@@ -114,11 +109,11 @@
           <view class="mine-column-item-title">总钱包</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 转换订单 -->
-        <view class="mine-column-item">
+        <!-- <view class="mine-column-item">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_zhdd_icon@2x.png"
@@ -126,11 +121,11 @@
           <view class="mine-column-item-title">转换订单</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
-        </view>
+        </view> -->
         <!-- 我的团队 -->
-        <view class="mine-column-item">
+        <view class="mine-column-item" @tap="handleJump(4)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_edtd_icon@2x.png"
@@ -138,11 +133,11 @@
           <view class="mine-column-item-title">我的团队</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 我的任务 -->
-        <view class="mine-column-item">
+        <!-- <view class="mine-column-item">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_wdrw_icon@2x.png"
@@ -150,11 +145,11 @@
           <view class="mine-column-item-title">我的任务</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
-        </view>
+        </view> -->
         <!-- 我的消息 -->
-        <view class="mine-column-item">
+        <view class="mine-column-item" @tap="handleJump(5)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_wdxiaox_icon@2x.png"
@@ -162,11 +157,11 @@
           <view class="mine-column-item-title">我的消息</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 问题反馈 -->
-        <view class="mine-column-item">
+        <view class="mine-column-item" @tap="handleJump(6)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_wtfankui_icon@2x.png"
@@ -174,11 +169,11 @@
           <view class="mine-column-item-title">问题反馈</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 常见问题 -->
-        <view class="mine-column-item">
+        <view class="mine-column-item" @tap="handleJump(7)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_cjwenti_icon@2x.png"
@@ -186,7 +181,7 @@
           <view class="mine-column-item-title">常见问题</view>
           <image
             class="mine-column-item-go"
-            src="@/static/image/zhzx_gbi_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 联系客服 -->
@@ -196,7 +191,7 @@
             src="@/static/image/wd_lxkefu_icon@2x.png"
           ></image>
           <view class="mine-column-item-title">联系客服</view>
-          <view class="mine-column-item-red">400-1234-5588</view>
+          <view class="mine-column-item-red">{{ mineData.kefu }}</view>
         </view>
       </view>
     </view>
@@ -204,6 +199,7 @@
 </template>
 
 <script>
+import { myselfInfo } from "@/api/new.js";
 export default {
   components: {},
   data() {
@@ -235,12 +231,56 @@ export default {
           image: require("@/static/image/wd_tuikuan_icon@2x.png"),
         },
       ],
+      // 个人信息
+      mineData: {},
+      //我的等级
+      level: "",
     };
   },
-  onLoad(options) {},
+  computed: {
+    levelIcon() {
+      switch (this.level) {
+        case "LV1":
+          return require("@/static/image/vip1@2x.png");
+        case "LV2":
+          return require("@/static/image/vip2@2x.png");
+        case "LV3":
+          return require("@/static/image/vip3@2x.png");
+        case "LV4":
+          return require("@/static/image/vip4@2x.png");
+        case "LV5":
+          return require("@/static/image/vip5@2x.png");
+      }
+    },
+  },
+  onLoad() {
+    console.log("load");
+  },
+  onShow() {
+    console.log("show");
+    this.getMyselfInfo();
+  },
   methods: {
+    //   用户资料
+    getMyselfInfo() {
+      myselfInfo({}, res => {
+        if (res.status > 0) {
+          console.log(res.data);
+          this.mineData = res.data;
+          this.level = res.data.level;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+        uni.stopPullDownRefresh();
+      });
+    },
+
     //跳转
     handleJump(val) {
+      console.log(val);
       switch (Number(val)) {
         //   用户信息
         case 1:
@@ -249,7 +289,58 @@ export default {
           });
           break;
         //   总钱包
+        case 2:
+          uni.navigateTo({
+            url: "/pages/mine/wallet/index",
+          });
+          break;
+        //   我的团队
+        case 4:
+          uni.navigateTo({
+            url: "/pages/mine/team/index",
+          });
+          break;
+        //   我的消息
+        case 5:
+          uni.navigateTo({
+            url: "/pages/mine/news/index",
+          });
+          break;
+        case 6:
+          uni.navigateTo({
+            url: "/pages/mine/question/index",
+          });
+          break;
+        case 7:
+          uni.navigateTo({
+            url: "/pages/mine/questionNormal/index",
+          });
+          break;
+        //  全部订单
+        case 8:
+          uni.navigateTo({
+            url: "/pages/mine/orderList/index?Inv=1",
+          });
+          break;
       }
+    },
+    handleClip() {
+      console.log("111");
+      uni.setClipboardData({
+        data: this.mineData.jinbi_address,
+        success: res => {
+          uni.showToast({
+            title: "复制成功!",
+            icon: "none",
+          });
+        },
+        fail: err => {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        },
+      });
     },
   },
 };

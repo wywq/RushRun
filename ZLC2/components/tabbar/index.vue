@@ -22,20 +22,15 @@
 export default {
   props: {
     active: [Number, String],
+    tabList: Array,
   },
   data() {
-    return {
-      //tabList
-      tabList: [
-        { id: 1, name: "视频区" },
-        { id: 2, name: "图文区" },
-        { id: 3, name: "音频区" },
-      ],
-    };
+    return {};
   },
   methods: {
     handleTab(id) {
       this.$emit("update:active", id);
+      this.$emit("changeTab");
     },
   },
 };

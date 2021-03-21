@@ -106,7 +106,8 @@ view {
   box-sizing: border-box;
 }
 //输入框placeholder的样式类
-.input-placeholder {
+.input-placeholder,
+.textarea-placeholder {
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

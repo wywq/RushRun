@@ -33,7 +33,7 @@
           <view class="real-item-value">请选择银行</view>
           <image
             class="real-item-icon"
-            src="@/static/image/sy_zhzx_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 银行卡号 -->

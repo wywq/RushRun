@@ -2,27 +2,31 @@
 <template>
   <view class="found">
     <header-basic class="found-header" title="发现"></header-basic>
-    <tab-bar class="found-tab" :active.sync="activeTab"></tab-bar>
+    <tab-bar
+      class="found-tab"
+      :active.sync="activeTab"
+      :tabList="tabList"
+      @changeTab="changeTab"
+    ></tab-bar>
     <!-- 主体 -->
     <view class="found-body">
       <!-- 视频区 -->
       <template v-if="activeTab == 1">
-        <block v-for="d in dataList" :key="d.id">
-          <view class="found-item" @tap="handleJump(1, d.id)">
+        <block v-for="d in dataList" :key="d.shipin_id">
+          <view class="found-item" @tap="handleJump(1, d.shipin_id)">
             <view class="found-item-left-one">
-              <image
-                class="found-left-cover"
-                src="@/static/image/sy_yj_bg@2x.png"
-              ></image>
+              <image class="found-left-cover" :src="d.shipin_pic"></image>
               <image
                 class="found-left-play"
                 src="@/static/image/sxy_bf_icon@2x.png"
               ></image>
             </view>
             <view class="found-item-right-one">
-              <view class="found-item-right-title-one">{{ d.title }}</view>
+              <view class="found-item-right-title-one">{{
+                d.shipin_name
+              }}</view>
               <view class="found-item-right-subtitle-one"
-                >发布时间：{{ d.time }}</view
+                >发布时间：{{ d.start_time }}</view
               >
             </view>
           </view>
@@ -30,18 +34,17 @@
       </template>
       <!-- 图文区 -->
       <template v-if="activeTab == 2">
-        <block v-for="d in dataList" :key="d.id">
-          <view class="found-item" @tap="handleJump(2, d.id)">
+        <block v-for="d in dataList" :key="d.shipin_id">
+          <view class="found-item" @tap="handleJump(2, d.shipin_id)">
             <view class="found-item-left-one">
-              <image
-                class="found-left-cover"
-                src="@/static/image/sy_yj_bg@2x.png"
-              ></image>
+              <image class="found-left-cover" :src="d.shipin_pic"></image>
             </view>
             <view class="found-item-right-one">
-              <view class="found-item-right-title-one">{{ d.title }}</view>
+              <view class="found-item-right-title-one">{{
+                d.shipin_name
+              }}</view>
               <view class="found-item-right-subtitle-one"
-                >发布时间：{{ d.time }}</view
+                >发布时间：{{ d.start_time }}</view
               >
             </view>
           </view>
@@ -49,16 +52,18 @@
       </template>
       <!-- 音频区 -->
       <template v-if="activeTab == 3">
-        <block v-for="d in dataList" :key="d.id">
-          <view class="found-item" @tap="handleJump(3, d.id)">
+        <block v-for="d in dataList" :key="d.shipin_id">
+          <view class="found-item" @tap="handleJump(3, d.shipin_id)">
             <image
               class="found-item-left-two"
               src="@/static/image/sxy_yup_bf_icon@2x.png"
             ></image>
             <view class="found-item-right-two">
-              <view class="found-item-right-title-two">{{ d.title }}</view>
+              <view class="found-item-right-title-two">{{
+                d.shipin_name
+              }}</view>
               <view class="found-item-right-subtitle-two"
-                >发布时间：{{ d.time }}</view
+                >发布时间：{{ d.start_time }}</view
               >
             </view>
           </view>
@@ -71,6 +76,7 @@
 <script>
 import HeaderBasic from "@/components/header/index";
 import TabBar from "@/components/tabbar/index";
+import { shangVideo, shangArt, shangRadio } from "@/api/new.js";
 export default {
   components: {
     HeaderBasic,
@@ -79,48 +85,139 @@ export default {
   data() {
     return {
       activeTab: 1,
-      dataList: [
-        { id: 1, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 2, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 3, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 4, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 5, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 6, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 7, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 8, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 9, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 10, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 11, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 12, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 13, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 14, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 15, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 16, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 17, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
-        { id: 18, title: "趣任务，一个不一样的爱眼软件", time: "2019-04-04" },
+      tabList: [
+        { id: 1, name: "视频区" },
+        { id: 2, name: "图文区" },
+        { id: 3, name: "音频区" },
       ],
+      page: 1,
+      dataList: [],
     };
   },
+  onLoad() {
+    uni.startPullDownRefresh();
+  },
+  onPullDownRefresh() {
+    this.page = 1;
+    this.getList();
+  },
+  onReachBottom() {
+    this.page++;
+    this.getList();
+  },
   methods: {
+    //分类请求
+    getList() {
+      switch (Number(this.activeTab)) {
+        case 1:
+          this.getShangVideo();
+          break;
+        case 2:
+          this.getShangArt();
+          break;
+        case 3:
+          this.getShangRadio();
+          break;
+      }
+    },
+    //视频区
+    getShangVideo() {
+      shangVideo(
+        {
+          page: this.page,
+          page_num: 7,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("视频区", res.data);
+            this.dataList = res.data;
+            if (this.page == 1) {
+              this.dataList = res.data;
+            } else {
+              this.dataList = this.dataList.concat(res.data);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+    //图文区
+    getShangArt() {
+      shangArt(
+        {
+          page: this.page,
+          page_num: 7,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("图文区", res.data);
+            if (this.page == 1) {
+              this.dataList = res.data;
+            } else {
+              this.dataList = this.dataList.concat(res.data);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+    //音频区
+    getShangRadio() {
+      shangRadio(
+        {
+          page: this.page,
+          page_num: 7,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("音频区", res.data);
+            if (this.page == 1) {
+              this.dataList = res.data;
+            } else {
+              this.dataList = this.dataList.concat(res.data);
+            }
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+    changeTab() {
+      uni.startPullDownRefresh();
+    },
     //跳转
     handleJump(type, id) {
       switch (Number(type)) {
         //   视频详情
         case 1:
           uni.navigateTo({
-            url: "/pages/found/videoDetails/index",
+            url: "/pages/found/videoDetails/index?id=" + id,
           });
           break;
         //   图文详情
         case 2:
           uni.navigateTo({
-            url: "/pages/basic/richtext/index",
+            url: "/pages/basic/richtext/index?type=2&id=" + id,
           });
           break;
         //   音频详情
         case 3:
           uni.navigateTo({
-            url: "/pages/found/audioDetails/index",
+            url: "/pages/found/audioDetails/index?id=" + id,
           });
           break;
       }

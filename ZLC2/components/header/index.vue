@@ -8,11 +8,13 @@
     <!-- 头 -->
     <view class="header-body">
       <template v-if="icon">
-        <image
-          class="header-body-icon"
-          src="@/static/image/dl_fh_b_icon@2x.png"
-          @tap="handleBack"
-        />
+        <view class="header-body-left">
+          <image
+            class="header-body-icon"
+            src="@/static/image/dl_fh_b_icon@2x.png"
+            @tap="handleBack"
+          />
+        </view>
       </template>
       <template v-else>
         <view class="header-body-func"></view>
@@ -93,17 +95,24 @@ export default {
   width: 100%;
   height: 96rpx;
 }
+.header-body-left {
+  @include flex(flex-start, center);
+  width: 30%;
+}
 .header-body-icon {
   width: 22rpx;
   height: 42rpx;
 }
 .header-body-title {
+  flex-shrink: 0;
   font-size: 36rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
   color: #ffffff;
 }
 .header-body-func {
+  width: 30%;
+  text-align: right;
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

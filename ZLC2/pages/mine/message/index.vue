@@ -6,11 +6,11 @@
     <view class="message-body">
       <view class="message-column">
         <!-- 头像 -->
-        <view class="message-item">
+        <view class="message-item" @tap="handleUpload">
           <view class="message-item-title">头像</view>
           <image
             class="message-item-avatar"
-            src="@/static/image/sy_zhzx_icon@2x.png"
+            :src="$url + this.formData.head_pic"
           ></image>
         </view>
         <!-- ID -->
@@ -24,17 +24,17 @@
           <input
             class="message-item-value"
             type="text"
-            v-model="name"
+            v-model="formData.nickname"
             placeholder="请输入您的姓名"
           />
         </view>
         <!-- 性别 -->
         <view class="message-item" @tap="handleJump(2)">
           <view class="message-item-title">性别</view>
-          <view class="message-item-value">女</view>
+          <view class="message-item-value">{{ formData.sex | sexFilter }}</view>
           <image
             class="message-item-icon"
-            src="@/static/image/sy_zhzx_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
         <!-- 微信 -->
@@ -43,52 +43,81 @@
           <input
             class="message-item-value"
             type="text"
-            v-model="wechat"
+            v-model="formData.weixin"
             placeholder="请输入您的微信账号"
           />
         </view>
         <!-- 等级信息 -->
-        <view class="message-item">
+        <view class="message-item" @tap="handleJump(3)">
           <view class="message-item-title">等级信息</view>
-          <view class="message-item-value" @tap="handleJump(3)">一星达人</view>
+          <view class="message-item-value">{{ level }}</view>
         </view>
       </view>
       <view class="message-column">
         <!-- 实名认证 -->
         <view class="message-item" @tap="handleJump(4)">
           <view class="message-item-title">实名认证</view>
-          <view class="message-item-red">已实名</view>
+          <template v-if="real == 3">
+            <view class="message-item-red">已实名</view>
+          </template>
+          <template v-else>
+            <view class="message-item-red">未实名</view>
+          </template>
           <image
             class="message-item-icon"
-            src="@/static/image/sy_zhzx_icon@2x.png"
+            src="@/static/image/order_all_icon@2x.png"
           ></image>
         </view>
       </view>
-      <view class="message-confirm">提交</view>
+      <view class="message-confirm" @tap="getEditgerenziliao">提交</view>
     </view>
   </view>
 </template>
 
 <script>
 import HeaderBasic from "@/components/header/index";
+import Utils from "@/common/utils/index.js";
+import { ziliao, editgerenziliao } from "@/api/new.js";
+
 export default {
   components: {
     HeaderBasic,
   },
   data() {
     return {
-      name: "",
-      wechat: "",
+      formData: {
+        nickname: "",
+        sex: "",
+        weixin: "",
+        head_pic: "",
+      },
+      level: "",
+      real: "",
     };
   },
-  onLoad(options) {},
+  filters: {
+    sexFilter(val) {
+      switch (Number(val)) {
+        case 0:
+          return "女";
+        case 1:
+          return "男";
+      }
+    },
+  },
+  onLoad(options) {
+    this.getZiliao();
+  },
+  onShow() {
+    this.formData.sex = Utils.storage.get("zlc_sex");
+  },
   methods: {
     //跳转
     handleJump(val) {
       switch (Number(val)) {
         case 2:
           uni.navigateTo({
-            url: "/pages/mine/sex/index",
+            url: "/pages/mine/sex/index?sex=" + this.formData.sex,
           });
           break;
         case 3:
@@ -97,11 +126,72 @@ export default {
           });
           break;
         case 4:
-          uni.navigateTo({
-            url: "/pages/mine/realname/index",
+          // uni.navigateTo({
+          //   url: "/pages/mine/realname/index",
+          // });
+          uni.showToast({
+            title: "暂未开放",
+            icon: "none",
           });
           break;
       }
+    },
+    //   用户资料
+    getZiliao() {
+      ziliao({}, res => {
+        if (res.status > 0) {
+          console.log(res.data.users);
+          this.formData.nickname = res.data.users.nick;
+          this.formData.sex = res.data.users.sex;
+          this.formData.weixin = res.data.users.weixin;
+          this.formData.head_pic = res.data.users.pic;
+          this.level = res.data.users.star;
+          this.real = res.data.users.real_state;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+        uni.stopPullDownRefresh();
+      });
+    },
+
+    //   用户资料
+    getEditgerenziliao() {
+      editgerenziliao(
+        {
+          ...this.formData,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log(res);
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+            setTimeout(() => {
+              uni.navigateBack({
+                delta: 1,
+              });
+            }, 1500);
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+
+    //点击上传
+    handleUpload() {
+      this.$upload.uploadImg(async url => {
+        console.log("url", url);
+        this.formData.head_pic = url;
+      });
     },
   },
 };

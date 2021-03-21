@@ -12,7 +12,7 @@
         <view class="home-header-left">
           <image
             class="home-header-left-icon"
-            src="@/static/image/nav_hy_icon@2x.png"
+            src="@/static/image/sy_dingwei_icon@2x.png"
           />
           <view class="home-header-left-city">沈阳市</view>
         </view>
@@ -20,7 +20,23 @@
         <view class="home-header-right"></view>
       </view>
       <!-- 封面 -->
-      <image class="home-cover" src="@/static/image/sy_img@2x.png" />
+      <!-- <image class="home-cover" src="@/static/image/sy_img@2x.png" /> -->
+      <swiper
+        class="home-carousel"
+        :indicator-dots="false"
+        previous-margin="0px"
+        next-margin="0px"
+        :circular="true"
+        :autoplay="true"
+        :interval="5000"
+        :duration="500"
+      >
+        <swiper-item v-for="b in bannerList" :key="b.id">
+          <view>
+            <image class="home-carousel-img" :src="b.pic"></image>
+          </view>
+        </swiper-item>
+      </swiper>
     </view>
     <!-- 首页公告 -->
     <view class="home-notice">
@@ -35,43 +51,40 @@
         :interval="4000"
         :duration="500"
       >
-        <!-- <swiper-item
+        <swiper-item
           class="home-notice-title"
           v-for="n in noticeList"
-          :key="n.no_id"
+          :key="n.id"
         >
-          {{ n.no_title }}
-        </swiper-item> -->
-        <swiper-item class="home-notice-title"
-          >关于推广规范网络推广，宣传等公告的宣传等公告的宣传等公告的宣传等公告的宣传等公告的宣传等公告的宣传等公告的</swiper-item
-        >
+          {{ n.title }}
+        </swiper-item>
       </swiper>
       <view class="home-notice-more" @tap="handleJump(1)">更多</view>
     </view>
     <!-- 首页模块 -->
     <view class="home-module">
-      <view class="home-module-item">
+      <view class="home-module-item" @tap="handleToast">
         <image
           class="home-module-item-icon"
           src="@/static/image/sy_jlb_icon@2x.png"
         />
         <view class="home-module-item-title">抢购</view>
       </view>
-      <view class="home-module-item">
+      <view class="home-module-item" @tap="handleToast">
         <image
           class="home-module-item-icon"
           src="@/static/image/sy_zhzx_icon@2x.png"
         />
         <view class="home-module-item-title">转换中心</view>
       </view>
-      <view class="home-module-item">
+      <view class="home-module-item" @tap="handleToast">
         <image
           class="home-module-item-icon"
           src="@/static/image/sy_sxy_icon@2x.png"
         />
         <view class="home-module-item-title">众创空间</view>
       </view>
-      <view class="home-module-item">
+      <view class="home-module-item" @tap="handleJump(5)">
         <image
           class="home-module-item-icon"
           src="@/static/image/sy_rwjz_icon@2x.png"
@@ -92,7 +105,9 @@
             />
             <view class="home-item-up-title">会员等级</view>
           </view>
-          <view class="home-item-down">LV3</view>
+          <view class="home-item-down">{{
+            myData.level ? myData.level : "--"
+          }}</view>
         </view>
         <view class="home-census-item mg-bt-45" @tap="handleJump(3)">
           <view class="home-item-up">
@@ -102,7 +117,9 @@
             />
             <view class="home-item-up-title">贡献值</view>
           </view>
-          <view class="home-item-down">1586</view>
+          <view class="home-item-down">{{
+            myData.gongxian ? myData.gongxian : 0
+          }}</view>
         </view>
         <view class="home-census-item" @tap="handleJump(4)">
           <view class="home-item-up">
@@ -112,7 +129,9 @@
             />
             <view class="home-item-up-title">活跃度</view>
           </view>
-          <view class="home-item-down">10+0.85</view>
+          <view class="home-item-down">{{
+            myData.huoyue ? myData.huoyue : "0+0"
+          }}</view>
         </view>
         <view class="home-census-item">
           <view class="home-item-up">
@@ -122,7 +141,9 @@
             />
             <view class="home-item-up-title">总金币</view>
           </view>
-          <view class="home-item-down">100.5986231</view>
+          <view class="home-item-down">{{
+            myData.jinbi ? myData.jinbi : 0
+          }}</view>
         </view>
       </view>
     </view>
@@ -131,12 +152,71 @@
 
 <script>
 import Utils from "@/common/utils/index.js";
+import { gonggaoList, myData, lunboList } from "@/api/new.js";
 export default {
   data() {
-    return {};
+    return {
+      //轮播图列表
+      bannerList: [],
+      // 首页公告
+      noticeList: [],
+      // 首页我的信息
+      myData: {},
+    };
   },
-  onLoad(options) {},
+  onLoad() {
+    this.getLunboList();
+    this.getGonggaoList();
+    this.getMyData();
+  },
   methods: {
+    //   首页公告
+    getGonggaoList() {
+      gonggaoList({}, res => {
+        if (res.status > 0) {
+          this.noticeList = res.data;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+      });
+    },
+    //   首页我的信息
+    getMyData() {
+      myData({}, res => {
+        if (res.status > 0) {
+          console.log("抢购订单", res.data);
+          this.myData = res.data;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+      });
+    },
+    //   首页lunbotu
+    getLunboList() {
+      lunboList({}, res => {
+        if (res.status > 0) {
+          console.log("lunbo", res.data);
+          this.bannerList = res.data;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+      });
+    },
+    handleToast() {
+      uni.showToast({
+        title: "暂未开放",
+        icon: "none",
+      });
+    },
     //跳转
     handleJump(val) {
       switch (Number(val)) {
@@ -162,6 +242,12 @@ export default {
         case 4:
           uni.navigateTo({
             url: `/pages/home/homeCensus/index?type=2`,
+          });
+          break;
+        // 游戏
+        case 5:
+          uni.navigateTo({
+            url: `/pages/home/game/index`,
           });
           break;
       }
@@ -238,9 +324,14 @@ export default {
   width: 200rpx;
   height: 30rpx;
 }
-.home-cover {
+.home-carousel {
   width: 690rpx;
   height: 300rpx;
+}
+.home-carousel-img {
+  width: 100%;
+  height: 300rpx;
+  border-radius: 8rpx;
 }
 .home-notice {
   @include flex(flex-start, center);

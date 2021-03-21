@@ -1,8 +1,35 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// {
+		// 	"path": "pages/basic/login/index",
+		// 	"style": {
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
 		// 首页
 		{
 			"path": "pages/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//登录
+		{
+			"path": "pages/basic/login/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//注册
+		{
+			"path": "pages/basic/register/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//忘记密码
+		{
+			"path": "pages/basic/forget/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
@@ -28,6 +55,13 @@
 				"navigationStyle": "custom"
 			}
 		},
+		//游戏
+		{
+			"path": "pages/home/game/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
 		//会员等级
 		{
 			"path": "pages/home/memberLevel/index",
@@ -39,6 +73,8 @@
 		{
 			"path": "pages/home/homeCensus/index",
 			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
 				"navigationStyle": "custom"
 			}
 		},
@@ -106,6 +142,104 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		//我的订单
+		{
+			"path": "pages/mine/wallet/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		// 我的钱包
+		{
+			"path": "pages/mine/orderList/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		// 我的钱包
+		{
+			"path": "pages/mine/wallet/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//提现
+		{
+			"path": "pages/mine/transfer/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//我的团队
+		{
+			"path": "pages/mine/team/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//团队招募
+		{
+			"path": "pages/mine/teamCollect/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//我的消息
+		{
+			"path": "pages/mine/news/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//问题反馈
+		{
+			"path": "pages/mine/question/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//反馈详情
+		{
+			"path": "pages/mine/questionDetail/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//发起反馈
+		{
+			"path": "pages/mine/addQuestion/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//常见问题（列表）
+		{
+			"path": "pages/mine/questionNormal/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//常见问题（详情）
+		{
+			"path": "pages/mine/questionNormalDetail/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
@@ -133,12 +267,12 @@
 				"selectedIconPath": "static/image/nav_fx1_icon@2x.png",
 				"text": "发现"
 			},
-			{
-				"pagePath": "pages/member/index",
-				"iconPath": "static/image/nav_hy_icon@2x.png",
-				"selectedIconPath": "static/image/nav_hy1_icon@2x.png",
-				"text": "会员中心"
-			},
+			// {
+			// 	"pagePath": "pages/member/index",
+			// 	"iconPath": "static/image/nav_hy_icon@2x.png",
+			// 	"selectedIconPath": "static/image/nav_hy1_icon@2x.png",
+			// 	"text": "会员中心"
+			// },
 			{
 				"pagePath": "pages/mine/index",
 				"iconPath": "static/image/nav_wd_icon@2x.png",

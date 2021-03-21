@@ -1,14 +1,10 @@
 let baseUrl = "";
 if (process.env.NODE_ENV === "development") {
-	baseUrl = "http://app.mine-v.com/api/";
-	// baseUrl = "http://kw.quyum.com/api/";
+  baseUrl = "http://118.190.174.163/";
 } else {
-	baseUrl = "http://app.mine-v.com/api/";
-	// baseUrl = "http://kw.quyum.com/api/";
+  // baseUrl = "http://8.210.127.30/";
+  baseUrl = "http://118.190.174.163/";
 }
-const imgUrl = "http://app.mine-v.com/";
-// const imgUrl = "http://kw.quyum.com/";
 module.exports = {
-	baseUrl,
-	imgUrl,
+  baseUrl,
 };

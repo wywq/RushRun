@@ -7,17 +7,33 @@
       :title="title"
     ></header-basic>
     <!-- 主体 -->
-    <view class="rich-body">
-      <view class="rich-body-top">
-        <view class="rich-body-top-title">趣任务,一个不一样的爱眼软件</view>
-        <view class="rich-body-top-subtitle">发布时间：2019-04-04 12:01</view>
+    <template v-if="type == 1">
+      <view class="rich-body">
+        <view class="rich-body-top">
+          <view class="rich-body-top-title">{{ dataDetails.title }}</view>
+          <view class="rich-body-top-subtitle"
+            >发布时间：{{ dataDetails.add_time }}</view
+          >
+        </view>
+        <view class="rich-body-down" v-html="dataDetails.content"></view>
       </view>
-      <view class="rich-body-down" v-html="nodes"></view>
-    </view>
+    </template>
+    <template v-if="type == 2">
+      <view class="rich-body">
+        <view class="rich-body-top">
+          <view class="rich-body-top-title">{{ dataDetails.shipin_name }}</view>
+          <view class="rich-body-top-subtitle"
+            >发布时间：{{ dataDetails.start_time }}</view
+          >
+        </view>
+        <view class="rich-body-down" v-html="dataDetails.shipin_code"></view>
+      </view>
+    </template>
   </view>
 </template>
 
 <script>
+import { gonggaoInfo, shangDetail } from "@/api/new.js";
 import HeaderBasic from "@/components/header/index";
 export default {
   components: {
@@ -25,13 +41,63 @@ export default {
   },
   data() {
     return {
+      dataDetails: {},
       title: "详情",
-      nodes:
-        "，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司，享有法人资格的各种公司纷纷设立，按章程从事自身的生产经营活动。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西。 清 魏源 《筹海篇四》：“西洋互市广东 者十馀国，皆散商无公司",
+      type: 0,
     };
   },
-  onLoad(options) {},
+  onLoad(options) {
+    // type 1 公告列表 2 多媒体详情
+    if (options.type) {
+      this.type = options.type;
+      switch (Number(options.type)) {
+        case 1:
+          this.getGonggaoInfo(options.id);
+          break;
+        case 2:
+          this.getShangDetail(options.id);
+          break;
+      }
+    }
+  },
   methods: {
+    //公告详情
+    getGonggaoInfo(id) {
+      gonggaoInfo(
+        {
+          id,
+        },
+        res => {
+          if (res.status > 0) {
+            this.dataDetails = res.data;
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+        }
+      );
+    },
+    //多媒体详情
+    getShangDetail(shipin_id) {
+      shangDetail(
+        {
+          shipin_id,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("多媒体详情", res.data);
+            this.dataDetails = res.data;
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+        }
+      );
+    },
     onHandleRight() {
       console.log("nb2");
     },

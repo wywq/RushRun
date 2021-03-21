@@ -10,10 +10,7 @@
     <!-- 主体 -->
     <view class="audio-body">
       <view class="audio-body-cover">
-        <image
-          class="audio-body-img"
-          src="@/static/image/sy_yj_bg@2x.png"
-        ></image>
+        <image class="audio-body-img" :src="audioDetail.shipin_pic"></image>
         <template v-if="isPlay">
           <image
             class="audio-body-play"
@@ -29,7 +26,7 @@
           ></image>
         </template>
       </view>
-      <view class="audio-body-title">趣任务，一个不一样的爱眼软件</view>
+      <view class="audio-body-title">{{ audioDetail.shipin_name }}</view>
       <view class="audio-body-control">
         <slider
           class="audio-body-slide"
@@ -56,6 +53,8 @@
 import dayjs from "dayjs";
 import HeaderBasic from "@/components/header/index";
 import share from "@/components/popup/share/index.vue";
+import { shangDetail } from "@/api/new.js";
+
 export default {
   components: {
     HeaderBasic,
@@ -63,6 +62,8 @@ export default {
   },
   data() {
     return {
+      //音频详情
+      audioDetail: {},
       //音频实例
       audioInstance: null,
       //定时器实例
@@ -82,8 +83,10 @@ export default {
     };
   },
   computed: {},
-  onLoad() {
-    this.audioInit();
+  onLoad(opt) {
+    if (opt.id) {
+      this.getShangDetail(opt.id);
+    }
     this.$on("hook:onUnload", () => {
       this.audioInstance.destroy();
       this.destroy();
@@ -91,10 +94,34 @@ export default {
     });
   },
   methods: {
+    //商学院详情
+    getShangDetail(shipin_id) {
+      shangDetail(
+        {
+          shipin_id,
+        },
+        res => {
+          if (res.status > 0) {
+            console.log("商学院详情", res.data);
+            this.audioDetail = res.data;
+            this.audioInit(res.data.shipin_code);
+          } else {
+            uni.showToast({
+              title: res.info,
+              icon: "none",
+            });
+          }
+          uni.stopPullDownRefresh();
+        }
+      );
+    },
+
     //初始化音频实例
-    audioInit() {
+    audioInit(src) {
+      console.log(src);
       this.audioInstance = uni.createInnerAudioContext();
-      this.audioInstance.src = require("@/static/audio/theSunAlsoRises.mp3");
+      this.audioInstance.src = src;
+      // this.audioInstance.src = require("@/static/audio/theSunAlsoRises.mp3");
       this.audioInstance.onCanplay(() => {
         // 设定音频终点
         this.audioEndStamp = this.audioInstance.duration * 1000000;

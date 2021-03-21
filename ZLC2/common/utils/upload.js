@@ -15,30 +15,30 @@ function uploadImg(callback) {
       });
       uni.uploadFile({
         // 需要上传的地址
-        url: config.imgUrl + "/api/member/uploadFile",
+        url: config.baseUrl + "/home/Index/uploadPics",
         // filePath  需要上传的文件
         filePath: res.tempFilePaths[0],
-        name: "img",
+        name: "pic",
         formData: {
-          me_id: uni.getStorageSync("me_id"),
-          token: uni.getStorageSync("token"),
+          // token: uni.getStorageSync("token"),
+          token: "111",
         },
         success(res1) {
           // 显示上传信息
           const data = JSON.parse(res1.data);
-          console.log("asdasdadas:", data);
-          let code = data.code;
-          let message = data.msg;
+          console.log("上传回调:", data);
+          let code = data.status;
+          let message = data.info;
           //统一处理返回值
           switch (Number(code)) {
             case 1:
-              callback(data.data.img_path);
+              callback(data.data);
               break;
             case 9999:
               utils.bottomToast("您的账号已离线，请重新登录");
               setTimeout(() => {
                 uni.reLaunch({
-                  url: "/pages/login/index",
+                  url: "/pages/basic/login/index",
                 });
               }, 1500);
               break;

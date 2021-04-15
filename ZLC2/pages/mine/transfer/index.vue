@@ -96,7 +96,7 @@ export default {
   padding: 30rpx;
   box-sizing: border-box;
   width: 100%;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 20rpx 20rpx 0 0;
 }
 .withdraw-card-head-title {
@@ -162,7 +162,7 @@ export default {
   height: 90rpx;
   line-height: 90rpx;
   text-align: center;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 24rpx;
   font-size: 36rpx;
   font-family: PingFangSC-Medium, PingFang SC;

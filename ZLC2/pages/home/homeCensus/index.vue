@@ -220,7 +220,7 @@ export default {
   font-size: 28rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
-  color: #e6344a;
+  color: #0f6ccb;
 }
 .census-list {
   @include flex(flex-start, center);
@@ -260,6 +260,6 @@ export default {
   font-size: 28rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
-  color: #e6344a;
+  color: #0f6ccb;
 }
 </style>

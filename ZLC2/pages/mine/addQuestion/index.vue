@@ -291,7 +291,7 @@ export default {
   line-height: 90rpx;
   text-align: center;
   border-radius: 22rpx;
-  background: #e6344a;
+  background: #0f6ccb;
   font-size: 32rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;

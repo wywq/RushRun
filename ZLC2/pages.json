@@ -21,26 +21,26 @@
 			}
 		},
 		//注册
-		{
-			"path": "pages/basic/register/index",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
+		// {
+		// 	"path": "pages/basic/register/index",
+		// 	"style": {
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
 		//忘记密码
-		{
-			"path": "pages/basic/forget/index",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
+		// {
+		// 	"path": "pages/basic/forget/index",
+		// 	"style": {
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
 		// 用户协议
-		{
-			"path": "pages/basic/agreement/index",
-			"style": {
-				"navigationStyle": "custom"
-			}
-		},
+		// {
+		// 	"path": "pages/basic/agreement/index",
+		// 	"style": {
+		// 		"navigationStyle": "custom"
+		// 	}
+		// },
 		// 富文本
 		{
 			"path": "pages/basic/richtext/index",
@@ -143,7 +143,7 @@
 				"navigationStyle": "custom"
 			}
 		},
-		//我的订单
+		//我的钱包
 		{
 			"path": "pages/mine/wallet/index",
 			"style": {
@@ -152,9 +152,17 @@
 				"navigationStyle": "custom"
 			}
 		},
-		// 我的钱包
+		// 我的订单
 		{
 			"path": "pages/mine/orderList/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/mine/orderDetails/index",
 			"style": {
 				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
 				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
@@ -240,6 +248,92 @@
 			"style": {
 				"navigationStyle": "custom"
 			}
+		},
+		//商城搜索
+		{
+			"path": "pages/mine/shop/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//商品详情
+		{
+			"path": "pages/mine/goodDetails/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//确认订单
+		{
+			"path": "pages/mine/confirmOrder/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//地址
+		{
+			"path": "pages/mine/address/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//tianjia地址
+		{
+			"path": "pages/mine/addAddress/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//支付方式
+		{
+			"path": "pages/mine/payment/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//转换中心
+		{
+			"path": "pages/exchange/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//搜索
+		{
+			"path": "pages/exchange/search/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//选择发布
+		{
+			"path": "pages/exchange/publishChoose/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//发布
+		{
+			"path": "pages/exchange/publish/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//订单列表
+		{
+			"path": "pages/exchange/orderList/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//订单详情
+		{
+			"path": "pages/exchange/orderDetails/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
@@ -251,7 +345,7 @@
 	},
 	"tabBar": {
 		"color": "#999999",
-		"selectedColor": "#E6344A",
+		"selectedColor": "#0f6ccb",
 		"borderStyle": "white",
 		"backgroundColor": "#FFFFFF",
 		"list": [

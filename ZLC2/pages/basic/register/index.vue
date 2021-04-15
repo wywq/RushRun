@@ -1,6 +1,7 @@
 <template>
   <view class="indexdiffrent">
     <view class="index-height"></view>
+    <image class="index-height-bg" src="@/static/image/registerbg.png"></image>
     <view class="header display_flex align_center">
       <image
         class="index-header-img margin-left margin-right"
@@ -10,11 +11,11 @@
       <view class="font_size_title color_white headertitle text_center"
         >注册</view
       >
-      <view
+      <!-- <view
         class="color_white font_size_14"
         @click="gopage('/pages/basic/login/index')"
         >登录账号</view
-      >
+      > -->
     </view>
     <!-- 账号信息 -->
     <view class="index-main display_flex align_center color_white">
@@ -23,7 +24,7 @@
         <input
           class="index-inp font_size_15"
           placeholder="请输入手机号"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_phone"
           maxlength="11"
         />
@@ -35,7 +36,7 @@
         <input
           class="index-inp font_size_15"
           placeholder="请输入验证码"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_code"
         />
       </view>
@@ -46,7 +47,7 @@
         >获取验证码</view
       >
       <view
-        class="index-text-code font_size_14 color-E6344A display_flex align_center flex_center"
+        class="index-text-code font_size_14 display_flex align_center flex_center"
         v-else
         >{{ countDown }}s</view
       >
@@ -57,8 +58,8 @@
         <input
           type="password"
           class="index-inp font_size_15"
-          placeholder="密码8-16位，包含数字或字母"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder="请输入密码"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_pwd"
         />
       </view>
@@ -70,7 +71,7 @@
           type="password"
           class="index-inp font_size_15"
           placeholder="请重复密码"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_pwdagein"
         />
       </view>
@@ -82,7 +83,7 @@
           type="password"
           class="index-inp font_size_15"
           placeholder="支付密码为6位数字"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_paypwd"
         />
       </view>
@@ -93,14 +94,14 @@
         <input
           class="index-inp font_size_15"
           placeholder="请输入邀请码"
-          placeholder-style="color:#ffffff;opacity:0.5"
+          placeholder-style="color:#ffffff;opacity:0.6"
           v-model="reg_invcode"
         />
       </view>
     </view>
     <!-- 立即注册 -->
     <view
-      class="index-btn font_size_title color-E6344A display_flex flex_center align_center"
+      class="index-btn font_size_title display_flex flex_center align_center"
       @click="registerClick"
       >立即注册</view
     >
@@ -324,9 +325,19 @@ export default {
 
 <style scoped>
 .indexdiffrent {
+  position: relative;
   width: 100%;
   height: 100vh;
-  background: #e6344a;
+  background: #0f6ccb;
+  z-index: 9;
+}
+.index-height-bg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 .header {
   width: 100%;
@@ -359,6 +370,7 @@ export default {
   height: 42upx;
   background: #ffffff;
   border-radius: 12upx;
+  color: #0b8de8;
 }
 .index-box {
   width: 54%;
@@ -370,6 +382,7 @@ export default {
   border-radius: 12upx;
   margin: 170upx auto 34upx;
   font-weight: 800;
+  color: #0b8de8;
 }
 .index-agreement-img {
   width: 32upx;
@@ -417,7 +430,7 @@ export default {
 .index-agree-btn {
   width: 298upx;
   height: 94upx;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 8upx;
   margin: 50upx auto 0;
 }

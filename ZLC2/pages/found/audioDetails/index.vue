@@ -1,12 +1,7 @@
 <!-- 用户协议 -->
 <template>
   <view class="audio">
-    <header-basic
-      :icon="true"
-      title="详情"
-      subtitle="分享"
-      @onRightButtonClick="onHandleRight"
-    ></header-basic>
+    <header-basic :icon="true" title="详情"></header-basic>
     <!-- 主体 -->
     <view class="audio-body">
       <view class="audio-body-cover">
@@ -34,9 +29,9 @@
           :max="audioEndStamp"
           :step="1000000"
           :value="currentPlayStamp"
-          activeColor="#E6344A"
+          activeColor="#0f6ccb"
           :block-size="14"
-          block-color="#E6344A"
+          block-color="#0f6ccb"
           @change="handleDragSilder"
         />
       </view>
@@ -104,7 +99,9 @@ export default {
           if (res.status > 0) {
             console.log("商学院详情", res.data);
             this.audioDetail = res.data;
-            this.audioInit(res.data.shipin_code);
+            this.$nextTick(() => {
+              this.audioInit(res.data.shipin_code);
+            });
           } else {
             uni.showToast({
               title: res.info,

@@ -161,7 +161,7 @@ export default {
   font-size: 28rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 500;
-  color: #e6344a;
+  color: #0f6ccb;
 }
 .real-item-icon {
   flex-shrink: 0;
@@ -176,14 +176,14 @@ export default {
   font-size: 24rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #e6344a;
+  color: #0f6ccb;
 }
 .real-confirm {
   width: 100%;
   height: 88rpx;
   line-height: 88rpx;
   text-align: center;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 22rpx;
   font-size: 32rpx;
   font-family: PingFangSC-Medium, PingFang SC;

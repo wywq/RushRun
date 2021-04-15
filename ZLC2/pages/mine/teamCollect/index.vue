@@ -9,6 +9,8 @@
     <!-- 团队招募body -->
     <view class="collect-body">
       <image class="collect-body-bg" src="@/static/image/wd_td_zm_bg@2x.png" />
+      <!-- <view class="collect-body-title">鱼之缘</view> -->
+      <!-- <view class="collect-body-subtitle">一部手机就可以赚钱</view> -->
       <view class="collect-body-code">邀请码:{{ code }}</view>
       <image class="collect-body-qr" :src="qrImg" />
       <view class="collect-body-btn">扫码注册</view>
@@ -90,6 +92,20 @@ export default {
   height: 100%;
   z-index: -1;
 }
+.collect-body-title {
+  margin-bottom: 320rpx;
+  font-size: 108rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+}
+.collect-body-subtitle {
+  margin-bottom: 60rpx;
+  font-size: 48rpx;
+  font-family: PingFangSC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #ffffff;
+}
 .collect-body-code {
   margin-bottom: 60rpx;
   font-size: 40rpx;
@@ -113,5 +129,6 @@ export default {
   font-family: PingFangSC-Semibold, PingFang SC;
   font-weight: 600;
   color: #ffffff;
+  background: #0f6ccb;
 }
 </style>

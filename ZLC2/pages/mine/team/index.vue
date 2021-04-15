@@ -265,7 +265,7 @@ export default {
   font-size: 32rpx;
   font-family: PingFangSC-Medium, PingFang SC;
   font-weight: 600;
-  color: #e6344a;
+  color: #0f6ccb;
   line-height: 44rpx;
 }
 .team-census-item-title {
@@ -285,7 +285,7 @@ export default {
   height: 100rpx;
   border-radius: 50%;
   z-index: 99;
-  border: 2rpx solid #e6344a;
+  border: 2rpx solid #0f6ccb;
 }
 .team-avatar-small-margin {
   @include flex(flex-end, center);
@@ -310,7 +310,7 @@ export default {
   margin-bottom: -10rpx;
   padding: 5rpx 10rpx;
   text-align: center;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 15rpx;
   font-size: 24rpx;
   transform: scale(0.8);

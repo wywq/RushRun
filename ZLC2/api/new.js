@@ -218,3 +218,150 @@ export function questions(data, callback) {
     callback && callback(res);
   });
 }
+/**
+ * 商城部分
+ */
+// 商品搜索
+export function searchGoods(data, callback) {
+  request.postAuth("home/Index/searchGoods", data, res => {
+    callback && callback(res);
+  });
+}
+// 首页分类和分类页面(传id就是子分类)
+export function getTypeList(data, callback) {
+  request.postAuth("home/Index/getTypeList", data, res => {
+    callback && callback(res);
+  });
+}
+// 商品详情
+export function getGoodsDetails(data, callback) {
+  request.postAuth("home/store/getGoodsDetails", data, res => {
+    callback && callback(res);
+  });
+}
+// 砍价商品详情
+export function bargainGoods(data, callback) {
+  request.postAuth("home/Bargain/bargainGoods", data, res => {
+    callback && callback(res);
+  });
+}
+// 确认订单
+export function confirmAnorder(data, callback) {
+  request.postAuth("home/Store/confirmAnorder", data, res => {
+    callback && callback(res);
+  });
+}
+// 下单
+export function buyOrder(data, callback) {
+  request.postAuth("home/Store/buyOrder", data, res => {
+    callback && callback(res);
+  });
+}
+// 收货地址列表
+export function addresslist(data, callback) {
+  request.postAuth("home/User/addresslist", data, res => {
+    callback && callback(res);
+  });
+}
+// 删除收货地址
+export function deladdress(data, callback) {
+  request.postAuth("home/User/deladdress", data, res => {
+    callback && callback(res);
+  });
+}
+// 修改收货地址
+export function doeditaddress(data, callback) {
+  request.postAuth("home/User/doeditaddress", data, res => {
+    callback && callback(res);
+  });
+}
+// 添加收货地址
+export function addaddress(data, callback) {
+  request.postAuth("home/User/addaddress", data, res => {
+    callback && callback(res);
+  });
+}
+// 订单详情
+export function myOrderInfo(data, callback) {
+  request.postAuth("home/Order/myOrderInfo", data, res => {
+    callback && callback(res);
+  });
+}
+// 确认收货
+export function affrimOrder(data, callback) {
+  request.postAuth("home/Order/affrimOrder", data, res => {
+    callback && callback(res);
+  });
+}
+// 转让中心--发布页的价格区间以及平均价格
+export function pingjun(data, callback) {
+  request.postAuth("home/Index/pingjun", data, res => {
+    callback && callback(res);
+  });
+}
+// 转换中心--发布转让
+export function fubuSell(data, callback) {
+  request.postAuth("home/Index/fubuSell", data, res => {
+    callback && callback(res);
+  });
+}
+// 转换中心--发布需求
+export function fubuNeed(data, callback) {
+  request.postAuth("home/Index/fubuNeed", data, res => {
+    callback && callback(res);
+  });
+}
+// 转换订单列表--我的挂单
+export function myGuadan(data, callback) {
+  request.postAuth("home/Index/myGuadan", data, res => {
+    callback && callback(res);
+  });
+}
+// 待收款列表
+export function userZhuanrangList(data, callback) {
+  request.postAuth("home/Index/userZhuanrangList", data, res => {
+    callback && callback(res);
+  });
+}
+// 待付款列表
+export function userXuqiuList(data, callback) {
+  request.postAuth("home/Index/userXuqiuList", data, res => {
+    callback && callback(res);
+  });
+}
+// 已完成订单
+export function userWanchengList(data, callback) {
+  request.postAuth("home/Index/userWanchengList", data, res => {
+    callback && callback(res);
+  });
+}
+// 撤单
+export function cexiao(data, callback) {
+  request.postAuth("home/Index/cexiao", data, res => {
+    callback && callback(res);
+  });
+}
+// 订单详情
+export function matchingInfo(data, callback) {
+  request.postAuth("home/Index/matchingInfo", data, res => {
+    callback && callback(res);
+  });
+}
+// 当日
+export function todayInfo(data, callback) {
+  request.postAuth("home/Index/todayInfo", data, res => {
+    callback && callback(res);
+  });
+}
+// 需求列表
+export function needList(data, callback) {
+  request.postAuth("home/Index/needList", data, res => {
+    callback && callback(res);
+  });
+}
+// 转让列表
+export function sellList(data, callback) {
+  request.postAuth("home/Index/sellList", data, res => {
+    callback && callback(res);
+  });
+}

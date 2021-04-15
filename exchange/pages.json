@@ -1,0 +1,130 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		// 首页
+		{
+			"path": "pages/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//登录
+		{
+			"path": "pages/basic/login/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//转换中心
+		{
+			"path": "pages/exchange/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//搜索
+		{
+			"path": "pages/exchange/search/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//选择发布
+		{
+			"path": "pages/exchange/publishChoose/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//发布
+		{
+			"path": "pages/exchange/publish/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		//订单列表
+		{
+			"path": "pages/exchange/orderList/index",
+			"style": {
+				"enablePullDownRefresh": true, //设置为true表示当前页面开启下拉刷新
+				"backgroundTextStyle": "dark", //下拉 loading 的样式，仅支持 dark/light
+				"navigationStyle": "custom"
+			}
+		},
+		//订单详情
+		{
+			"path": "pages/exchange/orderDetails/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 我的
+		{
+			"path": "pages/mine/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 划转
+		{
+			"path": "pages/mine/transfer/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 设置
+		{
+			"path": "pages/mine/select/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 上传凭证
+		{
+			"path": "pages/exchange/upload/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		// 查看凭证
+		{
+			"path": "pages/exchange/see/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarBackgroundColor": "#fff",
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"backgroundColor": "#F8F8F8",
+		"onReachBottomDistance": 160
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#0f6ccb",
+		"borderStyle": "white",
+		"backgroundColor": "#FFFFFF",
+		"list": [
+			{
+				"pagePath": "pages/index",
+				"iconPath": "static/image/nav_sy_icon@2x.png",
+				"selectedIconPath": "static/image/nav_sy1_icon@2x.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/exchange/index",
+				"iconPath": "static/image/nav_fx_icon@2x.png",
+				"selectedIconPath": "static/image/nav_fx1_icon@2x.png",
+				"text": "交易"
+			},
+			{
+				"pagePath": "pages/mine/index",
+				"iconPath": "static/image/nav_wd_icon@2x.png",
+				"selectedIconPath": "static/image/nav_wd1_icon@2x.png",
+				"text": "我的"
+			}
+		]
+	}
+}

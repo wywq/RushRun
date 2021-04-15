@@ -1,0 +1,308 @@
+body,p,ul,h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+body{
+	height: 100%;
+	overflow: auto;
+}
+.ellipsis{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+ul{
+	list-style: none;
+}
+span{
+	display: inline-block;
+}
+/* 10px */
+.font_size_9{
+	font-size: 18upx;
+}
+.font_size_10{
+	font-size: 20upx;
+}
+/* 11px */
+.font_size_11{
+	font-size: 22upx;
+}
+/* 12px */
+.font_size_12{
+	font-size: 24upx;
+}
+/* 13px */
+.font_size_13{
+	font-size: 26upx;
+}
+/* 14px */
+.font_size_14{
+	font-size: 28upx;
+}
+/* 15px */
+.font_size_15{
+	font-size: 30upx;
+}
+/* 16px */
+.font_size_16{
+	font-size: 32upx;
+}
+/* 18px */
+.font_size_title{
+	font-size: 36upx;
+}
+/* #222 */
+.color_222{
+	color: #222;
+}
+/* #666 */
+.color_666{
+	color: #666;
+}
+/* #9B9B9B */
+.color_grey{
+	color: #9B9B9B;
+}
+/* #DFDFDF */
+.color_DFDFDF{
+	color: #DFDFDF;
+}
+.color_ju{
+	color: #E4BE7E;
+}
+.color_929292{
+	color: #929292;
+}
+/* #3D3D3D */
+.color-3D3D3D{
+	color: #3D3D3D;
+}
+/* #fff */
+.color_white{
+	color: #fff;
+}
+/* #5EAFFE 蓝*/
+.color_blue{
+	color: #5EAFFE;
+}
+/* #F44500  橙红*/
+.color_red{
+	color: #F44500;
+}
+/*草绿*/
+.color_green{
+	color: #439E10;
+}
+.color_E4BE7E{
+	color:#E4BE7E
+}
+/* 紫 */
+.color_544fe1{
+	color:#544FE1;
+}
+input{
+	border: none;
+	outline: none;
+	padding: 0!important;
+	height: 100%;
+}
+input [type='button']{
+	background-color:#fff ;
+	-webkit-appearance: none;
+}
+
+input::-webkit-input-placeholder{
+	color: #FFFFFF;
+}
+input::-ms-input-placeholder{
+	color: #FFFFFF;
+}
+input::-moz-placeholder{
+	color: #FFFFFF;
+}
+
+/* 弹性布局 */
+.text_center{
+	text-align: center;
+}
+.text_right{
+	text-align: right;
+}
+.display_flex{
+	display: flex;
+}
+.flex{
+	flex: 1;
+}
+.flex_between{
+	justify-content: space-between;
+}
+.flex_wrap{
+    flex-wrap:wrap;
+}
+.flex_around{
+	justify-content: space-around;
+}
+.flex_start{
+	justify-content: flex-start;
+}
+.flex_end{
+	justify-content: flex-end;
+}
+.align_item{
+	align-items: center;
+}
+.flex_center{
+	justify-content: center;
+}
+.flex-direction{
+	flex-direction: column;
+}
+.margin-top{
+	margin-top: 20upx;
+}
+.padding-top{
+	padding-top: 20upx;
+}
+.position_relative{
+	position: relative;
+}
+.letter_spacing{
+	letter-spacing: 13upx;
+}
+.padding-right{
+	padding-right: 5%;
+}
+.padding-left{
+	padding-left: 5%;
+}
+.margin-right{
+	margin-right: 9%;
+}
+.margin-top-10{
+	margin-top: 10upx;
+}
+.padding-bottom{
+	padding-bottom: 20upx;
+}
+.margin-bottom{
+	margin-bottom: 20upx;
+}
+.font-76upx{
+	font-size: 76upx;
+}
+.margin-left{
+	margin-left: 5%;
+}
+.margin-left-20{
+	margin-left: 20upx;
+}
+.padding-right-10{
+	padding-right: 10upx;
+}
+.color-F5442D{
+	color:#F5442D ;
+}
+.color-09ba79{
+	color: #09BA79;
+}
+.color-E6344A{
+	color:#42dbee;
+}
+.color_0C58DF{
+	color: #0C58DF;
+}
+.color_EFDBAA{
+	color:#EFDBAA
+}
+.font_size_24{
+	font-size: 48upx;
+}
+.font_size_20{
+	font-size: 40upx;
+}
+.font_size_21{
+	font-size: 42upx;
+}
+.width-69{
+	width: 69%;
+}
+.margin-top-6{
+	margin-top: 6upx;
+}
+.font_size_17{
+	font-size: 34upx;
+}
+.padding-left-10{
+	padding-left: 10upx;
+}
+.margin-top-70{
+	margin-top: 70upx;
+}
+.margin-right-15{
+	margin-right: 15upx;
+}
+/* //////////////////////////////////////////////////////// */
+.flex_column{
+        flex-direction: column;
+}
+.justify_between{
+        justify-content: space-between;
+}
+.justify_around{
+        justify-content: space-around;
+}
+.justify_center{
+        justify-content: center;
+}
+.justify_start{
+        justify-content: flex-start;
+}
+.justify_end{
+        justify-content: flex-end;
+}
+
+.align_center{
+        align-items: center;
+}
+.align_between{
+        align-content: space-between;
+}
+.align_around{
+        align-content: space-around;
+}
+
+.color_888{
+        color: #888888;
+}
+.color_FB2F1D{
+        color: #FB2F1D;
+}
+.color_333{
+        color: #333333;
+}
+.color_544FE1{
+        color: #544FE1;
+}
+.color_09BA79{
+        color: #09BA79;
+}
+
+
+
+
+.index-height{
+	width: 100%;
+	height: var(--status-bar-height);
+}
+.font-weight{
+	font-weight: 800;
+}
+.font-weight-500{
+	font-weight: 500;
+}
+.font-weight-700{
+	font-weight: 700;
+}
+/* //////////////////////////////////////////////////////// */

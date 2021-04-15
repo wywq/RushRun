@@ -3,11 +3,16 @@ import utils from "@/common/utils/index.js";
 export default {
   onLaunch: function () {
     console.log("App Launch");
-    if (!utils.storage.get("zlc_token")) {
+    window["getToken"] = token => {
+      this.getToken(token);
+    };
+    // if (!localStorage.getItem("zlc_token")) {
+    if (!uni.getStorageSync("zlc_token")) {
       setTimeout(() => {
-        uni.reLaunch({
-          url: "/pages/basic/login/index",
-        });
+        // uni.reLaunch({
+        //   url: "/pages/basic/login/index",
+        // });
+        document.location = "testkey://openLogin";
       }, 1500);
     }
   },
@@ -17,6 +22,12 @@ export default {
   onHide: function () {
     console.log("App Hide");
   },
+  methods: {
+    //获取token
+    getToken(token) {
+      uni.setStorageSync("zlc_token", token);
+    },
+  },
 };
 </script>
 
@@ -24,4 +35,7 @@ export default {
 @import "static/css/uni.css";
 @import "static/css/global.css";
 /*每个页面公共css */
+.uni-tabbar {
+  visibility: hidden !important;
+}
 </style>

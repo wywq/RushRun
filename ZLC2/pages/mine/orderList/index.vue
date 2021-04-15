@@ -21,7 +21,7 @@
 			</view> -->
 
     <!-- 全部 -->
-    <view v-for="(item, index) in textlist" :key="index">
+    <view class="index-item" v-for="(item, index) in textlist" :key="index">
       <view
         :class="
           item.status == 3 && item.ord_consign == 1
@@ -58,7 +58,7 @@
           class="index-content display_flex align_center"
           @click="
             gopage(
-              '/pages/mine/orderDetails?Inv=' +
+              '/pages/mine/orderDetails/index?Inv=' +
                 Inv +
                 '&order_id=' +
                 item.order_id
@@ -121,7 +121,7 @@
             v-if="item.ord_consign == 1 && item.status == 1"
             @click="
               gopage(
-                '/pages/mine/orderDetails?Inv=' +
+                '/pages/mine/orderDetails/index?Inv=' +
                   Inv +
                   '&order_id=' +
                   item.order_id
@@ -143,7 +143,7 @@
             v-if="item.status == 2 && item.ord_consign == 1"
             @click="
               gopage(
-                '/pages/mine/orderDetails?Inv=' +
+                '/pages/mine/orderDetails/index?Inv=' +
                   Inv +
                   '&order_id=' +
                   item.order_id
@@ -155,7 +155,6 @@
         </view>
       </view>
     </view>
-
     <!-- 取消订单弹窗 -->
     <view class="index-tan text_center" v-if="is_cancellationOrder == true">
       <view class="index-tan-box">
@@ -320,6 +319,9 @@ export default {
   z-index: 999;
   width: 100%;
 }
+.index-item {
+  width: 100%;
+}
 .inv-h-w {
   width: 100%;
   height: 90upx;
@@ -339,15 +341,15 @@ export default {
 }
 
 .inv-h-se {
-  color: #e6344a;
+  color: #0f6ccb;
 }
 
 .index-gang {
-  color: #e6344a;
+  color: #0f6ccb;
   position: absolute;
   bottom: -15upx;
   left: 35%;
-  background: #e6344a;
+  background: #0f6ccb;
   width: 30%;
   height: 6upx;
 }
@@ -411,7 +413,7 @@ export default {
 .index-btn1 {
   width: 156upx;
   height: 60upx;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 32upx;
 }
 .index-tan {
@@ -436,7 +438,7 @@ export default {
 .index-tan-btn {
   width: 298upx;
   height: 94upx;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 8upx;
   margin: 50upx auto 0;
 }

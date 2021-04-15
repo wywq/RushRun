@@ -369,7 +369,7 @@ export default {
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #e6344a;
+  color: #0f6ccb;
   border-left: 2rpx solid #eee;
 }
 .home-module {

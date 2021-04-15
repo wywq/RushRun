@@ -19,7 +19,7 @@
     </view>
     <!-- <view class="index-logo-center text_center color_white">ZLC</view>
     <view class="margin-top-10 font_size_14 color_white text_center"
-      >众创生活</view
+      >鱼之缘</view
     > -->
     <!-- 输入框 -->
     <view class="index-main display_flex align_center">
@@ -140,7 +140,7 @@ export default {
 .indexdiffrent {
   width: 100%;
   height: 100vh;
-  background: #e6344a;
+  background: #0f6ccb;
 }
 .header {
   width: 100%;

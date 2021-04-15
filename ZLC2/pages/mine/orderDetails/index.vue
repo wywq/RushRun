@@ -1,6 +1,6 @@
 <template>
   <view>
-    <headerBar :is_show="true">订单详情</headerBar>
+    <header-basic :icon="true" title="订单详情"></header-basic>
     <view class="index">
       <!-- 商品信息 -->
       <view
@@ -162,8 +162,8 @@
 </template>
 
 <script>
-import { myOrderInfo, affrimOrder } from "../../api/mineService.js";
-import headerBar from "../../components/header_bar.vue";
+import { myOrderInfo, affrimOrder } from "@/api/new.js";
+import HeaderBasic from "@/components/header/index";
 export default {
   data() {
     return {
@@ -174,7 +174,7 @@ export default {
     };
   },
   components: {
-    headerBar,
+    HeaderBasic,
   },
   onLoad(e) {
     this.Inv = e.Inv;
@@ -233,7 +233,7 @@ export default {
 
 <style scoped>
 .index {
-  padding-top: calc(93upx + var(--status-bar-height));
+  /* padding-top: calc(93upx + var(--status-bar-height)); */
   /* background: url('/static/loginimg/dl_bg_img@2x.png'); */
   background: #ffffff;
   width: 100%;
@@ -278,14 +278,14 @@ export default {
 .index-footer-btn {
   width: 304upx;
   height: 94upx;
-  border: 2upx solid #e6344a;
+  border: 2upx solid #0f6ccb;
   border-radius: 8upx;
 }
 .index-footer-btn1 {
   width: 304upx;
   height: 94upx;
   border-radius: 8upx;
-  background: #e6344a;
+  background: #0f6ccb;
 }
 .index-main-status {
   width: 100%;
@@ -309,7 +309,7 @@ export default {
 .shouhuo-btn {
   width: 100%;
   height: 94upx;
-  background: #e6344a;
+  background: #0f6ccb;
   position: fixed;
   left: 0;
   bottom: 0;
@@ -336,7 +336,7 @@ export default {
 .index-tan-btn {
   width: 298upx;
   height: 94upx;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 8upx;
   margin: 50upx auto 0;
 }

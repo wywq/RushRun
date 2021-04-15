@@ -7,7 +7,7 @@
       <view class="mine-header-block"></view>
       <image
         class="mine-header-bg"
-        src="@/static/image/wd_ddty_bg@2x.png"
+        src="@/static/image/wd_ddty_bg copy@2x.png"
       ></image>
       <view class="mine-header-card">
         <image
@@ -33,17 +33,17 @@
           ></image>
         </view>
         <view class="mine-card-down">
-          <view class="mine-card-item">
+          <view class="mine-card-item" @tap="handleJump(9)">
             <view class="mine-card-item-value">{{ mineData.level }}</view>
             <view class="mine-card-item-title">会员等级</view>
           </view>
           <view class="mine-card-item-line"></view>
-          <view class="mine-card-item">
+          <view class="mine-card-item" @tap="handleJump(10)">
             <view class="mine-card-item-value">{{ mineData.huoyue }}</view>
             <view class="mine-card-item-title">活跃度</view>
           </view>
           <view class="mine-card-item-line"></view>
-          <view class="mine-card-item">
+          <view class="mine-card-item" @tap="handleJump(11)">
             <view class="mine-card-item-value">{{ mineData.gongxian }}</view>
             <view class="mine-card-item-title">贡献值</view>
           </view>
@@ -63,7 +63,7 @@
         </view>
         <view class="mine-order-down">
           <block v-for="o in orderList" :key="o.id">
-            <view class="mine-order-down-item">
+            <view class="mine-order-down-item" @tap="goOrderList(o.id)">
               <image class="mine-order-item-icon" :src="o.image"></image>
               <view class="mine-order-item-title">{{ o.title }}</view>
             </view>
@@ -72,18 +72,18 @@
       </view>
       <!-- 功能 -->
       <view class="mine-column">
-        <!-- 办理VIP -->
-        <!-- <view class="mine-column-item">
+        <!-- 商城 -->
+        <view class="mine-column-item" @tap="handleJump(3)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_blhy_icon@2x.png"
           ></image>
-          <view class="mine-column-item-title">办理VIP</view>
+          <view class="mine-column-item-title">商城</view>
           <image
             class="mine-column-item-go"
             src="@/static/image/order_all_icon@2x.png"
           ></image>
-        </view> -->
+        </view>
         <!-- 钱包地址 -->
         <view class="mine-column-item">
           <image
@@ -113,7 +113,7 @@
           ></image>
         </view>
         <!-- 转换订单 -->
-        <!-- <view class="mine-column-item">
+        <!-- <view class="mine-column-item" @tap="handleJump(12)">
           <image
             class="mine-column-item-icon"
             src="@/static/image/wd_zhdd_icon@2x.png"
@@ -194,41 +194,46 @@
           <view class="mine-column-item-red">{{ mineData.kefu }}</view>
         </view>
       </view>
+      <view class="mine-btn" @tap="handleBack">返回游戏</view>
     </view>
   </view>
 </template>
 
 <script>
 import { myselfInfo } from "@/api/new.js";
+import {
+  setClipboardData,
+  getClipboardData,
+} from "@/uni_modules/u-clipboard/js_sdk";
 export default {
   components: {},
   data() {
     return {
       orderList: [
-        {
-          id: 1,
-          title: "待付款",
-          image: require("@/static/image/wd_dfukuan_icon@2x.png"),
-        },
+        // {
+        //   id: 1,
+        //   title: "待付款",
+        //   image: require("@/static/image/wd_dfukuan_icon copy@2x.png"),
+        // },
         {
           id: 2,
           title: "待发货",
-          image: require("@/static/image/wd_dfahuo_icon@2x.png"),
+          image: require("@/static/image/wd_dfahuo_icon copy@2x.png"),
         },
         {
           id: 3,
           title: "待收货",
-          image: require("@/static/image/wd_dshohuo_icon@2x.png"),
+          image: require("@/static/image/wd_dshohuo_icon copy@2x.png"),
         },
-        {
-          id: 4,
-          title: "待评价",
-          image: require("@/static/image/wd_dpingjia_icon@2x.png"),
-        },
+        // {
+        //   id: 4,
+        //   title: "待评价",
+        //   image: require("@/static/image/wd_dpingjia_icon copy@2x.png"),
+        // },
         {
           id: 5,
-          title: "退款",
-          image: require("@/static/image/wd_tuikuan_icon@2x.png"),
+          title: "已完成",
+          image: require("@/static/image/wd_tuikuan_icon copy@2x.png"),
         },
       ],
       // 个人信息
@@ -253,14 +258,34 @@ export default {
       }
     },
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("created");
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  mounted() {
+    console.log("mounted");
+  },
   onLoad() {
-    console.log("load");
+    console.log("onLoad");
+    // window["getToken"] = token => {
+    //   this.getToken(token);
+    // };
+    uni.hideTabBar();
   },
   onShow() {
-    console.log("show");
+    console.log("onShow");
     this.getMyselfInfo();
   },
   methods: {
+    //获取token
+    getToken(token) {
+      uni.setStorageSync("zlc_token", token);
+    },
     //   用户资料
     getMyselfInfo() {
       myselfInfo({}, res => {
@@ -294,6 +319,12 @@ export default {
             url: "/pages/mine/wallet/index",
           });
           break;
+        //   商城
+        case 3:
+          uni.navigateTo({
+            url: "/pages/mine/shop/index",
+          });
+          break;
         //   我的团队
         case 4:
           uni.navigateTo({
@@ -306,11 +337,13 @@ export default {
             url: "/pages/mine/news/index",
           });
           break;
+        //   问题反馈
         case 6:
           uni.navigateTo({
             url: "/pages/mine/question/index",
           });
           break;
+        //   常见问题
         case 7:
           uni.navigateTo({
             url: "/pages/mine/questionNormal/index",
@@ -322,25 +355,80 @@ export default {
             url: "/pages/mine/orderList/index?Inv=1",
           });
           break;
+        //  会员等级
+        case 9:
+          uni.navigateTo({
+            url: "/pages/home/memberLevel/index",
+          });
+          break;
+        //  活跃度
+        case 10:
+          uni.navigateTo({
+            url: "/pages/home/homeCensus/index?type=2",
+          });
+          break;
+        //  贡献值
+        case 11:
+          uni.navigateTo({
+            url: "/pages/home/homeCensus/index?type=1",
+          });
+          break;
+        //  转换订单
+        case 12:
+          uni.navigateTo({
+            url: "/pages/exchange/orderList/index",
+          });
+          break;
+      }
+    },
+    goOrderList(id) {
+      switch (Number(id)) {
+        //   代发货
+        case 2:
+          uni.navigateTo({
+            url: "/pages/mine/orderList/index?Inv=3",
+          });
+          break;
+        //   待收货
+        case 3:
+          uni.navigateTo({
+            url: "/pages/mine/orderList/index?Inv=4",
+          });
+          break;
+        //   已完成
+        case 5:
+          uni.navigateTo({
+            url: "/pages/mine/orderList/index?Inv=5",
+          });
+          break;
       }
     },
     handleClip() {
       console.log("111");
-      uni.setClipboardData({
-        data: this.mineData.jinbi_address,
-        success: res => {
-          uni.showToast({
-            title: "复制成功!",
-            icon: "none",
-          });
-        },
-        fail: err => {
-          uni.showToast({
-            title: res.info,
-            icon: "none",
-          });
-        },
+      // uni.setClipboardData({
+      //   data: this.mineData.jinbi_address,
+      //   success: res => {
+      //     uni.showToast({
+      //       title: "复制成功!",
+      //       icon: "none",
+      //     });
+      //   },
+      //   fail: err => {
+      //     uni.showToast({
+      //       title: res.info,
+      //       icon: "none",
+      //     });
+      //   },
+      // });
+      setClipboardData(this.mineData.jinbi_address).then(() => {
+        uni.showToast({
+          title: "复制成功!",
+          icon: "none",
+        });
       });
+    },
+    handleBack() {
+      document.location = "testkey://closeWebview";
     },
   },
 };
@@ -525,7 +613,7 @@ export default {
 }
 .mine-order-down {
   @include flex(space-between, center);
-  padding: 25rpx 20rpx;
+  padding: 25rpx 60rpx;
   box-sizing: border-box;
   width: 100%;
   height: 125rpx;
@@ -610,6 +698,19 @@ export default {
   font-size: 28rpx;
   font-family: PingFangSC-Regular, PingFang SC;
   font-weight: 400;
-  color: #e6344a;
+  color: #0f6ccb;
+}
+.mine-btn {
+  margin-bottom: 30rpx;
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  border-radius: 20rpx;
+  background: #0f6ccb;
+  font-size: 32rpx;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #ffffff;
 }
 </style>

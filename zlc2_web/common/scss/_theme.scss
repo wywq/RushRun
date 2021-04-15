@@ -1,0 +1,97 @@
+@import "_variable";
+// !行为相关颜色
+$uni-color-primary: $uni-color-007aff;
+$uni-color-success: $uni-color-4cd964;
+$uni-color-warning: $uni-color-f0ad4e;
+$uni-color-error: $uni-color-dd524d;
+
+// !主题色
+$uni-color-theme: $uni-color-gold;
+
+// !文字基本颜色
+// 纯黑
+$uni-text-color-true-black: $uni-color-000000;
+// 深黑
+$uni-text-color-deep-black: $uni-color-020714;
+// 深黑
+$uni-text-color-dark-black: $uni-color-222222;
+// 深灰
+$uni-text-color-dark-grey: $uni-color-666666;
+// 浅灰
+$uni-text-color-light-grey: $uni-color-9b9b9b;
+// 绿色
+$uni-text-color-green: $uni-color-green;
+// 红色
+$uni-text-color-red: $uni-color-red;
+// 占位文字颜色
+$uni-text-color-placeholder: $uni-color-9b9b9b;
+//纯白
+$uni-text-color-white: $uni-color-ffffff;
+// 基本色
+$uni-text-color: $uni-color-333333;
+// 辅助灰色，如加载更多的提示信息
+$uni-text-color-grey: $uni-color-999999;
+// 禁用颜色
+$uni-text-color-disable: $uni-color-c0c0c0;
+
+// !背景颜色
+// 白色背景
+$uni-bg-color-white: $uni-color-ffffff;
+// 浅灰背景
+$uni-bg-color-grey: $uni-color-f7f7f7;
+// 黑色背景
+$uni-bg-color-black: $uni-color-000000;
+// 背景(辅助灰色，如加载更多的提示信息)
+$uni-bg-color-dark-grey: $uni-color-999999;
+// 点击状态颜色
+$uni-bg-color-hover: $uni-color-f1f1f1;
+//遮罩颜色
+$uni-bg-color-mask: $uni-color-000-opacity-4;
+
+// !边框
+//浅灰实心边框
+$uni-border-grey: 1px solid $uni-color-eeeeee;
+//边框阴影
+$uni-border-shadow: $uni-color-000-opacity-15;
+
+// !尺寸变量
+
+// !文字尺寸
+$uni-font-size-sm: $uni-size-12;
+$uni-font-size-base: $uni-size-14;
+$uni-font-size-lg: $uni-size-16;
+
+// !图片尺寸
+
+// !圆角
+$uni-border-radius-sm: $uni-size-2;
+$uni-border-radius-base: $uni-size-3;
+$uni-border-radius-lg: $uni-size-6;
+$uni-border-radius-circle: 50%;
+
+// !透明度
+// 组件禁用态的透明度
+$uni-opacity-disabled: $uni-opacity-3;
+
+// !文章场景相关
+
+// $themes: (
+//   light: (
+//     font_color1: #414141,
+//     font_color2: white,
+//     background_color1: #fff,
+//     background_color2: #f0f2f5,
+//     background_color3: red,
+//     background_color4: #2674e7,
+//     border_color1: #3d414a,
+//   ),
+//   dark: (
+//     font_color1: #a7a7a7,
+//     font_color2: white,
+//     background_color1: #1b2531,
+//     background_color2: #283142,
+//     background_color3: #1e6ceb,
+//     background_color4: #323e4e,
+//     border_color1: #3d414a,
+//   ),
+// );

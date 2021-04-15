@@ -1,12 +1,7 @@
 <!-- 用户协议 -->
 <template>
   <view class="video">
-    <header-basic
-      :icon="true"
-      title="详情"
-      subtitle="分享"
-      @onRightButtonClick="onHandleRight"
-    ></header-basic>
+    <header-basic :icon="true" title="详情"></header-basic>
     <template v-if="isPlay">
       <video
         class="video-player"

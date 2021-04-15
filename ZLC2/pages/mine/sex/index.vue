@@ -110,7 +110,7 @@ export default {
   height: 88rpx;
   line-height: 88rpx;
   text-align: center;
-  background: #e6344a;
+  background: #0f6ccb;
   border-radius: 22rpx;
   font-size: 32rpx;
   font-family: PingFangSC-Medium, PingFang SC;
@@ -118,6 +118,6 @@ export default {
   color: #ffffff;
 }
 .active {
-  color: #e6344a;
+  color: #0f6ccb;
 }
 </style>

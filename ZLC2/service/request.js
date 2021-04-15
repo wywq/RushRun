@@ -19,9 +19,10 @@ export function post(url, data, callback) {
           verticalAlign: "top",
         });
         setTimeout(() => {
-          uni.navigateTo({
-            url: "/pages/basic/login/index",
-          });
+          // uni.navigateTo({
+          //   url: "/pages/basic/login/index",
+          // });
+          document.location = "testkey://openLogin";
         }, 2000);
         // #endif
         return;
@@ -40,7 +41,10 @@ export function post(url, data, callback) {
 export function postAuth(url, data, callback) {
   let token = uni.getStorageSync("zlc_token")
     ? uni.getStorageSync("zlc_token")
-    : "111";
+    : "";
+  // let token = localStorage.getItem("zlc_token")
+  //   ? localStorage.getItem("zlc_token")
+  //   : "";
   let obj = {
     token,
   };
@@ -63,9 +67,10 @@ export function postAuth(url, data, callback) {
           icon: "none",
         });
         setTimeout(() => {
-          uni.reLaunch({
-            url: "/pages/basic/login/index",
-          });
+          // uni.reLaunch({
+          //   url: "/pages/basic/login/index",
+          // });
+          document.location = "testkey://openLogin";
         }, 1500);
       } else {
         callback(res.data);

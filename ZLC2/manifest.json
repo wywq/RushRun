@@ -1,5 +1,5 @@
 {
-    "name" : "众创生活",
+    "name" : "鱼之缘",
     "appid" : "__UNI__70BA34C",
     "description" : "",
     "versionName" : "1.0.0",
@@ -121,5 +121,20 @@
     },
     "uniStatistics" : {
         "enable" : false
+    },
+    "h5" : {
+        "title" : "鱼之缘",
+        "router" : {
+            "base" : "./",
+            "mode" : "hash"
+        },
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : ""
+                }
+            }
+        },
+        "template" : "index.html"
     }
 }

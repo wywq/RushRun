@@ -1,7 +1,12 @@
 <!-- 发现tab -->
 <template>
   <view class="found">
-    <header-basic class="found-header" title="发现"></header-basic>
+    <header-basic
+      class="found-header"
+      title="发现"
+      subtitle="返回"
+      @onRightButtonClick="onRightButtonClick"
+    ></header-basic>
     <tab-bar
       class="found-tab"
       :active.sync="activeTab"
@@ -95,6 +100,10 @@ export default {
     };
   },
   onLoad() {
+    // window["getToken"] = token => {
+    //   this.getToken(token);
+    // };
+    uni.hideTabBar();
     uni.startPullDownRefresh();
   },
   onPullDownRefresh() {
@@ -106,6 +115,10 @@ export default {
     this.getList();
   },
   methods: {
+    //获取token
+    getToken(token) {
+      uni.setStorageSync("zlc_token", token);
+    },
     //分类请求
     getList() {
       switch (Number(this.activeTab)) {
@@ -198,6 +211,9 @@ export default {
     },
     changeTab() {
       uni.startPullDownRefresh();
+    },
+    onRightButtonClick() {
+      document.location = "testkey://closeWebview";
     },
     //跳转
     handleJump(type, id) {

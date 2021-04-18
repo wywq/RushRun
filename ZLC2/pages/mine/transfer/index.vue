@@ -22,31 +22,39 @@
             <input
               class="withdraw-card-body-input"
               placeholder="请输入数量"
-              v-model="money"
+              v-model="formData.money"
             />
           </view>
           <view class="withdraw-card-body-tips">剩余数量：{{ coin }}</view>
-          <view class="withdraw-card-body-btn">确认</view>
+          <view class="withdraw-card-body-btn" @tap="handleConfirm">确认</view>
         </view>
       </view>
     </view>
     <withdraw-way ref="way"></withdraw-way>
+    <pay-pwd ref="pay" @getPassword="getPassword"></pay-pwd>
   </view>
 </template>
 
 <script>
+import { huazhuan } from "@/api/new.js";
 import HeaderBasic from "@/components/header/index";
 import WithdrawWay from "@/components/popup/withdrawWay/index.vue";
+import PayPwd from "@/components/popup/password/index";
 
 export default {
   components: {
     HeaderBasic,
     WithdrawWay,
+    PayPwd,
   },
   data() {
     return {
       coin: 0,
       money: "",
+      formData: {
+        paypwd: "",
+        money: "",
+      },
     };
   },
   computed: {},
@@ -55,10 +63,40 @@ export default {
       this.coin = opt.money;
     }
   },
+  onUnload() {
+    this.formData.paypwd = "";
+    this.formData.money = "";
+  },
   methods: {
+    //   用户资料
+    getHuazhuan() {
+      huazhuan(this.formData, res => {
+        if (res.status > 0) {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+          setTimeout(() => {
+            uni.navigateBack({
+              delta: 1,
+            });
+          }, 1000);
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
+        }
+      });
+    },
     //分享
-    handleWay() {
-      this.$refs.way.openPopup();
+    handleConfirm() {
+      this.$refs.pay.openPopup();
+    },
+    getPassword(e) {
+      console.log(e);
+      this.formData.paypwd = e;
+      this.getHuazhuan();
     },
   },
 };

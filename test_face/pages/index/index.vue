@@ -37,20 +37,20 @@ export default {
     handleTap() {
       const results = getMetaInfo();
       console.log(JSON.stringify(results));
-      // writeXinxi(
-      //   {
-      //     realname: "王奎智",
-      //     zhifubao: "18888888888",
-      //     idcard: "210104199312214616",
-      //   },
-      //   res => {
-      //     if (Number(res.status) > 0) {
-      //       console.log("res1", res);
-      //       this.getHuotirenzheng(results);
-      //     }
-      //   }
-      // );
-      this.getHuotirenzheng(results);
+      writeXinxi(
+        {
+          realname: "王奎智",
+          zhifubao: "18888888888",
+          idcard: "210104199312214616",
+        },
+        res => {
+          if (Number(res.status) > 0) {
+            console.log("res1", res);
+            this.getHuotirenzheng(results);
+          }
+        }
+      );
+      // this.getHuotirenzheng(results);
     },
   },
 };

@@ -126,12 +126,15 @@ export default {
           });
           break;
         case 4:
-          // uni.navigateTo({
-          //   url: "/pages/mine/realname/index",
-          // });
-          uni.showToast({
-            title: "暂未开放",
-            icon: "none",
+          if (this.real == 3) {
+            uni.showToast({
+              title: "您已实名",
+              icon: "none",
+            });
+            return;
+          }
+          uni.navigateTo({
+            url: "/pages/mine/realname/index",
           });
           break;
       }

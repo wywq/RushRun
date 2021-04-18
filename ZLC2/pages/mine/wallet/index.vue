@@ -13,7 +13,7 @@
         <view class="wallet-show">
           <image
             class="wallet-bg"
-            src="@/static/image/wd_wdqb_jb_bg@2x.png"
+            src="@/static/image/wd_wdqb_rmb_bg@2x (3).png"
           ></image>
           <view class="wallet-show-up">
             <view class="wallet-show-up-one">金币(个)</view>
@@ -81,22 +81,17 @@ export default {
   methods: {
     //   用户资料
     getRmb() {
-      rmb(
-        {
-          token: "111",
-        },
-        res => {
-          if (res.status > 0) {
-            this.coin = res.data.account_type_1;
-          } else {
-            uni.showToast({
-              title: res.info,
-              icon: "none",
-            });
-          }
-          uni.stopPullDownRefresh();
+      rmb({}, res => {
+        if (res.status > 0) {
+          this.coin = res.data.account_type_1;
+        } else {
+          uni.showToast({
+            title: res.info,
+            icon: "none",
+          });
         }
-      );
+        uni.stopPullDownRefresh();
+      });
     },
     //   收益明细
     getJinbiinfo() {

@@ -12,7 +12,7 @@
           <input
             class="real-item-value"
             type="text"
-            v-model="name"
+            v-model="formData.realname"
             placeholder="请输入您的真实姓名"
           />
         </view>
@@ -23,7 +23,7 @@
           <input
             class="real-item-value"
             type="text"
-            v-model="name"
+            v-model="formData.idcard"
             placeholder="请输入您的身份证号"
           />
         </view>
@@ -42,7 +42,7 @@
           <input
             class="real-item-value"
             type="text"
-            v-model="name"
+            v-model="formData.realname"
             placeholder="银行卡号一经填写，不能修改"
           />
         </view>
@@ -53,12 +53,12 @@
           <input
             class="real-item-value"
             type="text"
-            v-model="name"
+            v-model="formData.zhifubao"
             placeholder="请输入您的支付宝账号"
           />
         </view>
         <!-- 人脸识别 -->
-        <view class="real-item">
+        <view class="real-item" @tap="handleCheckFace">
           <view class="real-item-title">人脸识别</view>
           <view class="real-item-point">*</view>
           <view class="real-item-value">未识别</view>
@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { huotirenzheng, writeXinxi } from "@/api/new.js";
 import HeaderBasic from "@/components/header/index";
 export default {
   components: {
@@ -80,6 +81,11 @@ export default {
     return {
       name: "",
       wechat: "",
+      formData: {
+        realname: "",
+        zhifubao: "",
+        idcard: "",
+      },
     };
   },
   onLoad(options) {},
@@ -98,6 +104,33 @@ export default {
           });
           break;
       }
+    },
+    getHuotirenzheng(results) {
+      huotirenzheng(
+        {
+          metaInfo: JSON.stringify(results),
+        },
+        res => {
+          if (Number(res.status) > 0) {
+            console.log("res2", res);
+            // uni.navigateTo({
+            //   url:
+            //     "/pages/index/webview?data=" + res.data.ResultObject.CertifyUrl,
+            // });
+            window.location.href = res.data.ResultObject.CertifyUrl;
+          }
+        }
+      );
+    },
+    handleCheckFace() {
+      const results = getMetaInfo();
+      console.log(JSON.stringify(results));
+      writeXinxi(this.formData, res => {
+        if (Number(res.status) > 0) {
+          console.log("res1", res);
+          this.getHuotirenzheng(results);
+        }
+      });
     },
   },
 };
